@@ -1,4 +1,9 @@
-<div ng-repeat="video in videos" class="video">
+<div ng-show="videos.length == 1" ng-repeat="video in videos" class="big-video">
+  <h3>{{video.title.$t}}</h3>
+  <iframe src="{{embed}}" width="800px" height"450px" frameborder="0"></iframe>
+</div>
+
+<div ng-show="videos.length > 1" ng-repeat="video in videos" class="video">
   <h3>{{video.title.$t}}</h3>
   <img src="{{video.media$group.media$thumbnail[0].url}}" />
   <div class="progress">

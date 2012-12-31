@@ -33,14 +33,14 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Toogles</a>
-          <form class="navbar-search pull-left" ng-submit="updateUrl()">
+          <form class="navbar-search pull-left" ng-submit="location.path('/search/' + query)">
             <input ng-model="query" type="text" class="search-query" placeholder="Search YouTube">
           </form>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li ng-class="{active: location.path().indexOf('search') != -1}"><a href="#search">Search</a></li>
+              <li ng-class="{active: location.path() == '/about'}"><a href="#about">About</a></li>
+              <li ng-class="{active: location.path() == '/contact'}"><a href="#contact">Contact</a></li>
             </ul>
           </div>
         </div>
