@@ -19,6 +19,9 @@
   padding: 3%;
   line-height: 1.2;
 }
+.video img {
+  cursor: pointer;
+}
 .big-video {
   text-align: center;
 }

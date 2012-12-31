@@ -1,7 +1,6 @@
 'use strict';
 
 tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $location) {
-
   $scope.location = $location;
 
   window.searchCallback = function(data) {
@@ -17,6 +16,11 @@ tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $locatio
       var url = "https://gdata.youtube.com/feeds/api/videos?max-results=24&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
     }
     $http.jsonp(url);
+  }
+
+  $scope.urlToID = function(url) {
+    var parts = url.split("/");
+    return parts.pop();
   }
 
   if ($location.path().indexOf('search') !== '-1') {

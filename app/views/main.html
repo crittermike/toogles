@@ -5,7 +5,7 @@
 
 <div ng-show="videos.length > 1" ng-repeat="video in videos" class="video">
   <h3>{{video.title.$t}}</h3>
-  <img src="{{video.media$group.media$thumbnail[0].url}}" />
+  <img ng-click="location.path('/search/' + urlToID(video.id.$t))" src="{{video.media$group.media$thumbnail[0].url}}" />
   <div class="progress">
     <div class="bar bar-success" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
     <div class="bar bar-danger" style="width: {{100 - 100 * (video.gd$rating.average / 5)}}%;"></div>
