@@ -3,7 +3,11 @@
 var tooglesApp = angular.module('tooglesApp', [])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/search', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/search/:query', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
@@ -14,6 +18,6 @@ var tooglesApp = angular.module('tooglesApp', [])
         templateUrl: 'views/contact.html'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/search'
       });
   }]);

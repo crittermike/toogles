@@ -24,7 +24,7 @@
     <script src="scripts/vendor/json3.min.js"></script>
     <![endif]-->
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top" ng-controller="MainCtrl">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -33,8 +33,8 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Toogles</a>
-          <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="Search YouTube">
+          <form class="navbar-search pull-left" ng-submit="updateUrl()">
+            <input ng-model="query" type="text" class="search-query" placeholder="Search YouTube">
           </form>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
@@ -42,7 +42,7 @@
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>

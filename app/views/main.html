@@ -1,14 +1,3 @@
-<div class="hero-unit">
-  <h1>Super awesome YouTube goggles!</h1>
-  <p>Toogles is an alternative interface for YouTube that focuses on discovering cool videos and distrction-free viewing.</p>
-  <hr />
-  <div class="input-append">
-    <form action="" ng-submit="search()">
-      <input class="span7" type="text" ng-model="query" />
-      <button class="btn btn-primary" type="button" ng-click>Search</button>
-    </form>
-  </div>
-</div>
 <div ng-repeat="video in videos" class="video">
   <h3>{{video.title.$t}}</h3>
   <img src="{{video.media$group.media$thumbnail[0].url}}" />
