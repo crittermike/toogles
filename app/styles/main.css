@@ -1,0 +1,23 @@
+.progress {
+  height: 5px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.video {
+  width: 24.9%;
+  float: left;
+  position: relative;
+  margin-right: 1px;
+  margin-bottom: 5px;
+}
+.video h3 {
+  font-size: 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 94%;
+  padding: 3%;
+  line-height: 1.2;
+}
