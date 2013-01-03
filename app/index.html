@@ -25,32 +25,9 @@
     <script src="scripts/vendor/json3.min.js"></script>
     <![endif]-->
 
-    <div class="navbar navbar-fixed-top" ng-controller="MainCtrl">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Toogles</a>
-          <form class="navbar-search pull-left" ng-submit="location.path('/search/' + query)">
-            <input ng-model="query" type="text" class="search-query" placeholder="Search YouTube">
-          </form>
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li ng-class="{active: location.path().indexOf('search') != -1}"><a href="#search">Search</a></li>
-              <li ng-class="{active: location.path() == '/about'}"><a href="#about">About</a></li>
-              <li ng-class="{active: location.path() == '/contact'}"><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
     <br />
     <br />
-    <br />
-    <div class="container-fluid" ng-view></div>
+    <div class="container row" ng-view></div>
 
     <script src="scripts/vendor/jquery.js"></script>
     <script src="scripts/vendor/foundation.min.js"></script>

@@ -12,6 +12,10 @@ var tooglesApp = angular.module('tooglesApp', [])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/view/:query', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html'
       })

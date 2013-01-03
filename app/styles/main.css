@@ -3,10 +3,8 @@
   border-radius: 0;
 }
 .video {
-  width: 24.9%;
-  float: left;
+  display: block;
   position: relative;
-  margin-right: 1px;
 }
 .video h3 {
   font-size: 14px;
@@ -15,17 +13,30 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  width: 94%;
-  padding: 3%;
+  width: 100%;
   line-height: 1.2;
+}
+.video h3 span {
+  padding: 3%;
+  display: block;
 }
 .video img {
   cursor: pointer;
 }
-.big-video {
-  text-align: center;
+.search-form input {
+  margin-bottom: 0;
 }
-iframe {
-  height: 450px;
-  width: 800px;
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+.rating {
+  height: 8px;
+  background-color: #C60F13;
+  margin-bottom: 30px;
+  margin-top: -2px;
+}
+.rating .like {
+  height: 8px;
+  background-color: #457A1A;
 }
