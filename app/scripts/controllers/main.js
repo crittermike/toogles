@@ -27,7 +27,7 @@ tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $locatio
   ]
 
   $scope.search = function() {
-    var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?max-results=50&alt=json&callback=searchCallback";
+    var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?max-results=24&alt=json&callback=searchCallback";
     if ($routeParams.query !== undefined) {
       if ($location.path().indexOf('search') > -1) {
         $scope.query = $routeParams.query;
