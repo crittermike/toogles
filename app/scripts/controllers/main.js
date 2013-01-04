@@ -16,7 +16,7 @@ tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $locatio
     {key: "Education", title: "Education"},
     {key: "Entertainment", title: "Entertainment"},
     {key: "Film", title: "Film & Animation"},
-    {key: "Howto", title: "Howto & Style"},
+    {key: "Howto", title: "How To & Style"},
     {key: "Music", title: "Music"},
     {key: "News", title: "News & Politics"},
     {key: "People", title: "People & Blogs"},
