@@ -1,0 +1,24 @@
+<div class="three columns">
+  <form class="search-form" ng-submit="location.path('/search/' + query)">
+    <input ng-model="query" type="text" placeholder="fluffy bunnies">
+    <button class="button expand">Search YouTube</button>
+  </form>
+  <h3>{{video.title.$t}}</h3>
+  <div class="rating">
+    <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
+  </div>
+  <dl>
+    <dt>User</dt>
+    <dd>{{video.author[0].name.$t}}</dd>
+    <dt>Views</dt>
+    <dd>{{video.yt$statistics.viewCount}}</dd>
+    <dt>Date</dt>
+    <dd>{{video.published.$t | date}}</dd>
+  </dl>
+  <p ng-bind-html="video.desc"></p>
+</div>
+<div class="nine columns">
+  <div class="flex-video">
+    <iframe src="http://www.youtube.com/embed/{{urlToID(video.id.$t)}}" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>

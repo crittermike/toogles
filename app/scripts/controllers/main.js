@@ -1,13 +1,13 @@
 'use strict';
 
-tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $location) {
+/**
+ * The controller used when searching/browsing videos.
+ */
+tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $location) {
   $scope.location = $location;
 
   window.searchCallback = function(data) {
     $scope.videos = data.feed.entry;
-    if ($scope.videos.length === 1) {
-      $scope.embed = $scope.videos[0].media$group.media$content[0].url;
-    }
   }
 
   $scope.categories = [
@@ -40,6 +40,35 @@ tooglesApp.controller('MainCtrl', function($scope, $http, $routeParams, $locatio
   $scope.urlToID = function(url) {
     var parts = url.split("/");
     return parts.pop();
+  }
+  $scope.search();
+});
+
+/**
+ * The controller used when viewing an individual video.
+ */
+tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $location, $filter) {
+  $scope.location = $location;
+
+  window.viewCallback = function(data) {
+    $scope.video = data.entry;
+    var desc = data.entry.media$group.media$description.$t;
+    desc = desc.replace(/\n/g, '|||');
+    desc = $filter('linky')(desc);
+    $scope.video.desc = desc.replace("|||", '<br/>');
+    // TODO FIX THIS
+  }
+
+  $scope.search = function() {
+    var url = 'https://gdata.youtube.com/feeds/api/videos/' + $routeParams.query + '?v=2&alt=json&callback=viewCallback';
+    $http.jsonp(url);
+  }
+
+  $scope.urlToID = function(url) {
+    if (url) {
+      var parts = url.split(":");
+      return parts.pop();
+    }
   }
 
   $scope.search();

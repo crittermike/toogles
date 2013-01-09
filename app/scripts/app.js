@@ -1,20 +1,20 @@
 'use strict';
 
 // Boilerplate for Angular
-var tooglesApp = angular.module('tooglesApp', [])
+var tooglesApp = angular.module('tooglesApp', ['ngSanitize'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/search', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
       })
       .when('/search/:query', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
       })
       .when('/view/:query', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/view.html',
+        controller: 'ViewCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html'
