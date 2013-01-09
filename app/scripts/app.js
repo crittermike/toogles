@@ -4,7 +4,11 @@
 var tooglesApp = angular.module('tooglesApp', ['ngSanitize'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/search', {
+      .when('/browse', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
+      })
+      .when('/browse/:category', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })
@@ -23,7 +27,7 @@ var tooglesApp = angular.module('tooglesApp', ['ngSanitize'])
         templateUrl: 'views/contact.html'
       })
       .otherwise({
-        redirectTo: '/search'
+        redirectTo: '/browse'
       });
   }]);
 

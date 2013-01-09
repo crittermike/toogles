@@ -29,10 +29,10 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
   $scope.search = function() {
     var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?max-results=24&alt=json&callback=searchCallback";
     if ($routeParams.query !== undefined) {
-      if ($location.path().indexOf('search') > -1) {
-        $scope.query = $routeParams.query;
-      }
+      $scope.query = $routeParams.query;
       var url = "https://gdata.youtube.com/feeds/api/videos?max-results=24&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
+    } else if ($routeParams.category !== undefined) {
+      var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured_" + $routeParams.category + "?max-results=24&alt=json&callback=searchCallback";
     }
     $http.jsonp(url);
   }

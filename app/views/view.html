@@ -16,7 +16,7 @@
   </div>
   <ul>
     <li><i class="icon-user"></i> <a href="http://youtube.com/{{video.author[0].name.$t}}">{{video.author[0].name.$t}}</a></li>
-    <li><i class="icon-eye-open"></i> {{video.yt$statistics.viewCount | number:0}}</li>
+    <li><i class="icon-eye-open"></i> {{video.yt$statistics.viewCount | number:0}} views</li>
     <li><i class="icon-calendar"></i> {{video.published.$t | date}}</li>
   </ul>
   <p class="hide-for-small description" ng-bind-html="video.desc"></p>

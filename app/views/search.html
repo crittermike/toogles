@@ -4,7 +4,7 @@
     <button class="button expand">Search YouTube</button>
   </form>
   <ul class="hide-for-small vertical tabs">
-    <li ng-repeat="category in categories"><a href="#">{{category.title}}</a></li>
+    <li ng-class="{active: location.path().indexOf(category.key) > 1}" ng-repeat="category in categories"><a ng-click="location.path('/browse/' + category.key)" $href="#">{{category.title}}</a></li>
   </ul>
 </div>
 <div class="nine columns">
