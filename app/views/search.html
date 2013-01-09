@@ -3,7 +3,7 @@
     <input ng-model="query" type="text" placeholder="fluffy bunnies">
     <button class="button expand">Search YouTube</button>
   </form>
-  <ul class="hide-on-phones vertical tabs">
+  <ul class="hide-for-small vertical tabs">
     <li ng-repeat="category in categories"><a href="#">{{category.title}}</a></li>
   </ul>
 </div>

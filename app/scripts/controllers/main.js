@@ -53,10 +53,10 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
   window.viewCallback = function(data) {
     $scope.video = data.entry;
     var desc = data.entry.media$group.media$description.$t;
-    desc = desc.replace(/\n/g, '|||');
-    desc = $filter('linky')(desc);
-    $scope.video.desc = desc.replace("|||", '<br/>');
-    // TODO FIX THIS
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    desc = desc.replace(exp,"<a href='$1'>$1</a>"); 
+    desc = desc.replace(/\n/g, '<br />');
+    $scope.video.desc = desc;
   }
 
   $scope.search = function() {
@@ -69,6 +69,10 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
       var parts = url.split(":");
       return parts.pop();
     }
+  }
+
+  $scope.goBack = function() {
+    history.back();
   }
 
   $scope.search();
