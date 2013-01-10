@@ -77,11 +77,6 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
     $scope.video.desc = desc;
   }
 
-  $scope.search = function() {
-    var url = 'https://gdata.youtube.com/feeds/api/videos/' + $routeParams.query + '?v=2&alt=json&callback=viewCallback';
-    $http.jsonp(url);
-  }
-
   $scope.urlToID = function(url) {
     if (url) {
       var parts = url.split(":");
@@ -89,9 +84,6 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
     }
   }
 
-  $scope.goBack = function() {
-    history.back();
-  }
-
-  $scope.search();
+  var url = 'https://gdata.youtube.com/feeds/api/videos/' + $routeParams.query + '?v=2&alt=json&callback=viewCallback';
+  $http.jsonp(url);
 });
