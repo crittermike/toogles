@@ -6,8 +6,20 @@
 tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $location) {
   $scope.location = $location;
 
+  var resultsPerPage = 24;
+
   window.searchCallback = function(data) {
-    $scope.videos = data.feed.entry;
+    if (!$scope.videos) {
+      $scope.videos = data.feed.entry;
+    } else {
+      $scope.videos.push.apply($scope.videos, data.feed.entry);
+    }
+  }
+
+  $scope.page = 0;
+  $scope.loadMore = function() {
+    $scope.page = $scope.page + 1;
+    $scope.search();
   }
 
   $scope.categories = [
@@ -27,13 +39,19 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
   ]
 
   $scope.search = function() {
-    var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured?max-results=24&alt=json&callback=searchCallback";
-    if ($routeParams.query !== undefined) {
+    var startIndex = $scope.page * resultsPerPage + 1;
+    var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
+
+    if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
+      // This is a search with a specific query.
       $scope.query = $routeParams.query;
-      var url = "https://gdata.youtube.com/feeds/api/videos?max-results=24&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
+      var url = "https://gdata.youtube.com/feeds/api/videos?start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
+
     } else if ($routeParams.category !== undefined) {
-      var url = "https://gdata.youtube.com/feeds/api/standardfeeds/recently_featured_" + $routeParams.category + "?max-results=24&alt=json&callback=searchCallback";
+      // This is a category page.
+      var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed_" + $routeParams.category + "?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
     }
+
     $http.jsonp(url);
   }
 
