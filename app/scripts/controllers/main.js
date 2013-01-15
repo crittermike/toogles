@@ -70,11 +70,14 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
 
   window.viewCallback = function(data) {
     $scope.video = data.entry;
+
     var desc = data.entry.media$group.media$description.$t;
     var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
     desc = desc.replace(exp,"<a href='$1'>$1</a>"); 
     desc = desc.replace(/\n/g, '<br />');
-    $scope.video.desc = desc;
+    $scope.video.desc = desc; // The linkified and line broken description
+
+    $scope.video.authorname = data.entry.author[0].uri.$t.split('/').pop();
   }
 
   $scope.urlToID = function(url) {
