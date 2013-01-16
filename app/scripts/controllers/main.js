@@ -68,6 +68,7 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
  */
 tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $location, $filter, $rootScope) {
   $scope.location = $location;
+  $scope.showSidebar = true;
 
   window.viewCallback = function(data) {
     $scope.video = data.entry;

@@ -5,23 +5,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
 }
-.meta h3 {
-  font-size: 40px;
-}
-.meta ul {
-  list-style: none;
-  margin: 0 0 20px;
-  padding: 0;
-}
-.meta ul li {
-  font-size: 18px;
-}
 .progress {
   height: 5px;
   border-radius: 0;
 }
+.toggle-menu,
 .back-menu {
-  font-size: 65px;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+.toggle-menu {
+  cursor: w-resize;
 }
 .video {
   display: block;
@@ -61,6 +55,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 30px;
   margin-top: -2px;
 }
+.meta h3 {
+  font-size: 40px;
+}
+.meta ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.meta ul li {
+  font-size: 18px;
+}
 .meta .rating {
   margin-bottom: 20px;
 }
@@ -88,4 +93,17 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #ccc;
+}
+.toggler {
+  height: 100%;
+  width: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #ccc;
+  cursor: e-resize;
+  z-index: 100;
+}
+.toggler:hover {
+  background: #888;
 }
