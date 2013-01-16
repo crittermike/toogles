@@ -3,7 +3,8 @@
 /**
  * The controller used when searching/browsing videos.
  */
-tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $location) {
+tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $location, $rootScope) {
+  $rootScope.previous = $location.path();
   $scope.location = $location;
 
   var resultsPerPage = 24;
@@ -65,7 +66,7 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
 /**
  * The controller used when viewing an individual video.
  */
-tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $location, $filter) {
+tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $location, $filter, $rootScope) {
   $scope.location = $location;
 
   window.viewCallback = function(data) {
@@ -84,6 +85,14 @@ tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $locatio
     if (url) {
       var parts = url.split(":");
       return parts.pop();
+    }
+  }
+
+  $scope.goBack = function() {
+    if ($rootScope.previous) {
+      history.back();
+    } else {
+      $location.path('/browse');
     }
   }
 
