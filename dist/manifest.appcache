@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Time: Fri Jan 18 2013 10:45:44 GMT-0500 (EST)
+# Time: Fri Jan 18 2013 10:55:43 GMT-0500 (EST)
 # This manifest was created by confess.js, http://github.com/jamesgpearce/confess
 #
 # Retrieved URL: http://localhost:3501/#/browse
@@ -22,38 +22,6 @@ CACHE MANIFEST
 
 CACHE:
 http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400
-http://i.ytimg.com/vi/-v-IMSKOtoE/0.jpg
-http://i.ytimg.com/vi/0G2jMY3j3mM/0.jpg
-http://i.ytimg.com/vi/2NCDYjHtEcU/0.jpg
-http://i.ytimg.com/vi/3ke-sS8dPKk/0.jpg
-http://i.ytimg.com/vi/C6TGO6F5xLY/0.jpg
-http://i.ytimg.com/vi/DLUNgRAbR7w/0.jpg
-http://i.ytimg.com/vi/Ea0tJhdNRxg/0.jpg
-http://i.ytimg.com/vi/EjR8VphNdGo/0.jpg
-http://i.ytimg.com/vi/JOhVBk9DcrY/0.jpg
-http://i.ytimg.com/vi/JrKXH1CeXck/0.jpg
-http://i.ytimg.com/vi/LLlKZeVA4bw/0.jpg
-http://i.ytimg.com/vi/LMkJuDVJdTw/0.jpg
-http://i.ytimg.com/vi/OAfEq80YlWU/0.jpg
-http://i.ytimg.com/vi/T2UkpcTMG-U/0.jpg
-http://i.ytimg.com/vi/WRBogaUCSUM/0.jpg
-http://i.ytimg.com/vi/Y0qJdShOL_s/0.jpg
-http://i.ytimg.com/vi/ZGhVXgMoz4g/0.jpg
-http://i.ytimg.com/vi/Zce-QT7MGSE/0.jpg
-http://i.ytimg.com/vi/_6t-EjrtD3U/0.jpg
-http://i.ytimg.com/vi/aVMq7ynj_64/0.jpg
-http://i.ytimg.com/vi/jh8RX4xDs_k/0.jpg
-http://i.ytimg.com/vi/kSN7OZjt1MU/0.jpg
-http://i.ytimg.com/vi/tD_Q6_EIDlc/0.jpg
-http://i.ytimg.com/vi/wJjEcVl6PqY/0.jpg
-http://localhost:3501/images/foundation/orbit/bullets.jpg
-http://localhost:3501/images/foundation/orbit/left-arrow-small.png
-http://localhost:3501/images/foundation/orbit/left-arrow.png
-http://localhost:3501/images/foundation/orbit/pause-black.png
-http://localhost:3501/images/foundation/orbit/right-arrow-small.png
-http://localhost:3501/images/foundation/orbit/right-arrow.png
-http://localhost:3501/images/foundation/orbit/rotator-black.png
-http://localhost:3501/images/foundation/orbit/timer-black.png
 http://www.google-analytics.com/ga.js
 scripts/e2143f55.scripts.js
 scripts/vendor/1bf2bd51.jquery.min.js
@@ -61,9 +29,9 @@ scripts/vendor/23419e86.angular.min.js
 scripts/vendor/9f855c3e.modernizr.foundation.js
 scripts/vendor/bcf9d69c.foundation.min.js
 scripts/vendor/f24e4278.angular-sanitize.min.js
-styles/31d96723.main.css
 styles/4ac44719.foundation.css
 styles/5a973e3a.font-awesome.min.css
+styles/e330e0b3.toogles.css
 
 NETWORK:
 *
