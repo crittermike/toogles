@@ -1,9 +1,7 @@
-'use strict';
-
 /**
  * The controller used when searching/browsing videos.
  */
-tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $location, $rootScope) {
+tooglesApp.controller('ListCtrl', ['$scope', '$http', '$routeParams', '$location', '$rootScope', function($scope, $http, $routeParams, $location, $rootScope) {
   $rootScope.previous = $location.path();
   $scope.location = $location;
 
@@ -42,14 +40,17 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
   $scope.search = function() {
     var startIndex = $scope.page * resultsPerPage + 1;
     var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
+    document.title = "Toogles | Awesome goggles for YouTube";
 
     if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
       // This is a search with a specific query.
+      document.title = $routeParams.query + " | Toogles";
       $scope.query = $routeParams.query;
       var url = "https://gdata.youtube.com/feeds/api/videos?start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
 
     } else if ($routeParams.category !== undefined) {
       // This is a category page.
+      document.title = $routeParams.category + " | Toogles";;
       var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed_" + $routeParams.category + "?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
     }
 
@@ -61,42 +62,5 @@ tooglesApp.controller('SearchCtrl', function($scope, $http, $routeParams, $locat
     return parts.pop();
   }
   $scope.search();
-});
+}]);
 
-/**
- * The controller used when viewing an individual video.
- */
-tooglesApp.controller('ViewCtrl', function($scope, $http, $routeParams, $location, $filter, $rootScope) {
-  $scope.location = $location;
-  $scope.showSidebar = true;
-
-  window.viewCallback = function(data) {
-    $scope.video = data.entry;
-
-    var desc = data.entry.media$group.media$description.$t;
-    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    desc = desc.replace(exp,"<a href='$1'>$1</a>"); 
-    desc = desc.replace(/\n/g, '<br />');
-    $scope.video.desc = desc; // The linkified and line broken description
-
-    $scope.video.authorname = data.entry.author[0].uri.$t.split('/').pop();
-  }
-
-  $scope.urlToID = function(url) {
-    if (url) {
-      var parts = url.split(":");
-      return parts.pop();
-    }
-  }
-
-  $scope.goBack = function() {
-    if ($rootScope.previous) {
-      history.back();
-    } else {
-      $location.path('/browse');
-    }
-  }
-
-  var url = 'https://gdata.youtube.com/feeds/api/videos/' + $routeParams.query + '?v=2&alt=json&callback=viewCallback';
-  $http.jsonp(url);
-});
