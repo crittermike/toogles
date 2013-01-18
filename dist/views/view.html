@@ -17,11 +17,11 @@
     <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
   </div>
   <ul>
-    <li><i class="icon-user"></i> <a href="#/user/{{video.authorname}}">{{video.author[0].name.$t}}</a></li>
+    <li><i class="icon-user"></i> <a href="#/user/{{video.author[0].uri.$t.split('/').pop()}}">{{video.author[0].name.$t}}</a></li>
     <li><i class="icon-eye-open"></i> {{video.yt$statistics.viewCount | number:0}} views</li>
     <li><i class="icon-calendar"></i> {{video.published.$t | date}}</li>
   </ul>
-  <p class="hide-for-small description" ng-bind-html="video.desc"></p>
+  <p class="hide-for-small description" ng-bind-html="video.media$group.media$description.$t | htmlify"></p>
 </div>
 <div class="columns" ng-class="{eight: showSidebar, twelve: !showSidebar}">
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
