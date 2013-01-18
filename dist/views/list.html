@@ -1,4 +1,4 @@
-<div when-scrolled="loadMore()" class="three columns">
+<div class="three columns">
   <form class="search-form" ng-submit="location.path('/search/' + query)">
     <input ng-model="query" type="text" placeholder="fluffy bunnies">
     <button class="button expand">Search YouTube</button>
@@ -7,7 +7,7 @@
     <li ng-class="{active: location.path().indexOf(category.key) > 1}" ng-repeat="category in categories"><a ng-click="location.path('/browse/' + category.key)" $href="#">{{category.title}}</a></li>
   </ul>
 </div>
-<div class="nine columns">
+<div when-scrolled="loadMore()" class="nine columns">
   <div ng-repeat="video in videos" class="four columns">
     <a href="#/view/{{urlToID(video.id.$t)}}" class="video">
       <h3><span>{{video.title.$t}}</span></h3>

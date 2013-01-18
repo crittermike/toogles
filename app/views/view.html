@@ -17,7 +17,7 @@
     <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
   </div>
   <ul>
-    <li><i class="icon-user"></i> <a href="http://youtube.com/{{video.authorname}}">{{video.author[0].name.$t}}</a></li>
+    <li><i class="icon-user"></i> <a href="#/user/{{video.authorname}}">{{video.author[0].name.$t}}</a></li>
     <li><i class="icon-eye-open"></i> {{video.yt$statistics.viewCount | number:0}} views</li>
     <li><i class="icon-calendar"></i> {{video.published.$t | date}}</li>
   </ul>

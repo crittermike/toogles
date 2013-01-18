@@ -1,0 +1,25 @@
+<div class="meta three columns">
+  <form class="search-form" ng-submit="location.path('/search/' + query)">
+    <input ng-model="query" type="text" placeholder="fluffy bunnies">
+    <button class="button expand">Search YouTube</button>
+  </form>
+  <h3>{{user.title.$t}}</h3>
+  <ul>
+    <li><i class="icon-eye-open"></i> {{user.yt$statistics.totalUploadViews | number:0}} views</li>
+    <li><i class="icon-user"></i> {{user.yt$statistics.subscriberCount | number:0}} subscribers</li>
+    <li><i class="icon-calendar"></i> Joined {{user.published.$t | date}}</li>
+    <li><i class="icon-map-marker"></i> Located in {{user.yt$location.$t}}</li>
+  </ul>
+  <p class="hide-for-small description" ng-bind-html="user.desc"></p>
+</div>
+<div when-scrolled="loadMore()" class="nine columns">
+  <div ng-repeat="video in videos" class="four columns">
+    <a href="#/view/{{urlToID(video.id.$t)}}" class="video">
+      <h3><span>{{video.title.$t}}</span></h3>
+      <img ng-src="{{video.media$group.media$thumbnail[2].url}}" />
+      <div class="rating">
+        <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
+      </div>
+    </a>
+  </div>
+</div>
