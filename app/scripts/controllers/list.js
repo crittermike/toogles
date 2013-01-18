@@ -1,7 +1,7 @@
 /**
  * The controller used when searching/browsing videos.
  */
-tooglesApp.controller('ListCtrl', ['$scope', '$http', '$routeParams', '$location', '$rootScope', function($scope, $http, $routeParams, $location, $rootScope) {
+tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$rootScope', 'youtube', function($scope, $routeParams, $location, $rootScope, youtube) {
   $rootScope.previous = $location.path();
   $scope.location = $location;
 
@@ -39,28 +39,27 @@ tooglesApp.controller('ListCtrl', ['$scope', '$http', '$routeParams', '$location
 
   $scope.search = function() {
     var startIndex = $scope.page * resultsPerPage + 1;
-    var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
-    document.title = "Toogles | Awesome goggles for YouTube";
-
     if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
       // This is a search with a specific query.
       document.title = $routeParams.query + " | Toogles";
       $scope.query = $routeParams.query;
-      var url = "https://gdata.youtube.com/feeds/api/videos?start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&q=" + $routeParams.query + "&callback=searchCallback";
+      youtube.getVideos('search', $scope.query, startIndex, resultsPerPage, 'searchCallback');
 
     } else if ($routeParams.category !== undefined) {
       // This is a category page.
       document.title = $routeParams.category + " | Toogles";;
-      var url = "https://gdata.youtube.com/feeds/api/standardfeeds/most_viewed_" + $routeParams.category + "?time=today&start-index=" + startIndex + "&max-results=" + resultsPerPage + "&alt=json&callback=searchCallback";
+      youtube.getVideos('category', $routeParams.category, startIndex, resultsPerPage, 'searchCallback');
+
+    } else {
+      document.title = "Toogles | Awesome goggles for YouTube";
+      youtube.getVideos('browse', '', startIndex, resultsPerPage, 'searchCallback');
     }
-
-    $http.jsonp(url);
-  }
-
-  $scope.urlToID = function(url) {
-    var parts = url.split("/");
-    return parts.pop();
   }
   $scope.search();
+
+  $scope.urlToID = function(url) {
+    return youtube.urlToID(url, '/');
+  }
+
 }]);
 

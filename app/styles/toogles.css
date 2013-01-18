@@ -94,6 +94,19 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   background: #ccc;
 }
+.fixed {
+  width: 25%;
+  margin-top: 25px;
+  padding: 0 15px;
+}
+@media only screen and (max-width: 767px) {
+  .fixed {
+    position: static;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
 .toggler {
   height: 100%;
   width: 10px;
