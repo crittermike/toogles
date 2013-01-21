@@ -7,10 +7,12 @@
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
+
+    <!-- build:css styles/styles.css -->
     <link rel="stylesheet" href="styles/foundation.css"/>
     <link rel="stylesheet" href="styles/font-awesome.min.css"/>
     <link rel="stylesheet" href="styles/toogles.css"/>
-    <script src="scripts/vendor/modernizr.foundation.js"></script>
+    <!-- endbuild -->
 
   </head>
   <body ng-app="tooglesApp">
@@ -29,14 +31,11 @@
     <div class="container row" ng-view></div>
 
     <!-- build:js scripts/scripts.js -->
-    <script src="scripts/vendor/jquery.min.js"></script>
-    <script src="scripts/vendor/foundation.min.js"></script>
     <script src="scripts/vendor/angular.min.js"></script>
     <script src="scripts/vendor/angular-sanitize.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/list.js"></script>
     <script src="scripts/controllers/view.js"></script>
-    <script src="scripts/controllers/user.js"></script>
     <script src="scripts/services/youtube.js"></script>
     <script src="scripts/filters/htmlify.js"></script>
     <script src="scripts/directives/scroll.js"></script>
@@ -52,5 +51,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+
   </body>
 </html>

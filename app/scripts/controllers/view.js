@@ -12,7 +12,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', '$root
   }
 
   $scope.urlToID = function(url) {
-    return youtube.urlToID(url, ':');
+    return youtube.urlToID(url);
   }
 
   // Go back to the previous page if one exists, otherwise the homepage.
