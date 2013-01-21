@@ -120,3 +120,36 @@ h1, h2, h3, h4, h5, h6 {
 .toggler:hover {
   background: #888;
 }
+
+.tabs.vertical li ul {
+  padding-top:10px;
+  padding-bottom:10px;
+  border-left:solid 3px #eee;
+  border-right:solid 1px #eee;
+  margin-left:-4px;
+  -webkit-box-shadow:1px 0 0 #FFF inset;
+  -moz-box-shadow:1px 0 0 #FFF inset;
+  box-shadow:1px 0 0 #FFF inset;
+}
+
+.tabs.vertical li ul li a {
+  cursor: pointer;
+  font-weight:400;
+  color:#666!important;
+  background:#fff!important;
+  padding:7px 0 7px 20px;
+  border: none;
+}
+
+.tabs.vertical li ul li a:hover {
+  color:#111!important;
+}
+
+.tabs.vertical li ul li.active a {
+  font-weight:700;
+  color:#222!important;
+}
+
+.tabs.vertical li ul li,.tabs.vertical li ul li.active {
+  border:none;
+}
