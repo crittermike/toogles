@@ -58,6 +58,12 @@ h1, h2, h3, h4, h5, h6 {
 .meta h3 {
   font-size: 40px;
 }
+.meta h3 a {
+  color: #222;
+}
+.meta h3 a:hover {
+  color: #2ba6cb;
+}
 .meta ul {
   list-style: none;
   margin: 0 0 20px;
