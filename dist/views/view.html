@@ -12,7 +12,7 @@
       </form>
     </div>
   </div>
-  <h3>{{video.title.$t}}</h3>
+  <h3><a href="http://youtube.com/watch?v={{urlToID(video.id.$t)}}&toogles=0">{{video.title.$t}}</a></h3>
   <div class="rating">
     <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
   </div>
