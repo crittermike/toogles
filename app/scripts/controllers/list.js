@@ -67,7 +67,6 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
       youtube.getVideos('browse', '');
     }
   }
-  $scope.search();
 
   $scope.$watch('sort + time + duration', function() {
     youtube.setSort($scope.sort);
