@@ -46,7 +46,7 @@
 </div>
 <div when-scrolled="loadMore()" class="nine columns">
   <div ng-repeat="video in videos" class="four columns">
-    <a href="#/view/{{urlToID(video.id.$t)}}" class="video">
+    <a href="#/view/{{urlToID(video.media$group.yt$videoid.$t)}}" class="video">
       <h3><span>{{video.title.$t}}</span></h3>
       <img ng-src="{{video.media$group.media$thumbnail[1].url}}" />
       <div class="rating">

@@ -39,6 +39,12 @@ tooglesApp.service('youtube', ['$http', function($http) {
     if (type === 'user') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/uploads?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+    } else if (type === 'user_favorites') {
+      // All videos by a user
+      var url = urlBase + 'users/' + query + '/favorites?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+    } else if (type === 'user_subscriptions') {
+      // All videos by a user
+      var url = urlBase + 'users/' + query + '/newsubscriptionvideos?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
     } else if (type === 'category') {
       // All videos within a category
       var url = urlBase + "standardfeeds/most_viewed_" + query + "?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;

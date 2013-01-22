@@ -11,6 +11,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
   window.searchCallback = function(data) {
     if (!$scope.videos) {
       $scope.videos = data.feed.entry;
+      console.log($scope.videos);
     } else {
       $scope.videos.push.apply($scope.videos, data.feed.entry);
     }
@@ -18,6 +19,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
 
   window.userCallback = function(data) {
     $scope.user = data.entry;
+    console.log($scope.user);
   }
 
   $scope.page = 0;
@@ -58,8 +60,12 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
 
     } else if ($routeParams.username !== undefined) {
       // This is a user page.
+      var type = 'user';
+      if ($routeParams.feed !== undefined) {
+        type += '_' + $routeParams.feed;
+      }
       document.title = $routeParams.username + " | Toogles";;
-      youtube.getVideos('user', $routeParams.username);
+      youtube.getVideos(type, $routeParams.username);
       youtube.getUser($routeParams.username, 'userCallback');
 
     } else {
