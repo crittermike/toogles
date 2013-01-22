@@ -19,7 +19,6 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
 
   window.userCallback = function(data) {
     $scope.user = data.entry;
-    console.log($scope.user);
   }
 
   $scope.page = 0;
@@ -84,6 +83,9 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
 
   $scope.urlToID = function(url) {
     return youtube.urlToID(url);
+  }
+  $scope.formatDuration = function(seconds) {
+    return youtube.formatDuration(seconds);
   }
 
 }]);
