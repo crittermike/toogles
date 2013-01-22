@@ -77,4 +77,23 @@ tooglesApp.service('youtube', ['$http', function($http) {
       return parts.pop();
     }
   }
+
+  this.formatDuration = function(seconds) {
+    sec_numb    = parseInt(seconds);
+    var hours   = Math.floor(sec_numb / 3600);
+    var minutes = Math.floor((sec_numb - (hours * 3600)) / 60);
+    var seconds = sec_numb - (hours * 3600) - (minutes * 60);
+
+    if (minutes < 10 && hours !== 0) {
+      minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    var time = minutes+':'+seconds;
+    if (hours !== 0) {
+      time = hours + ":" + time;
+    }
+    return time;
+  }
 }]);

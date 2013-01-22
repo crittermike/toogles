@@ -126,6 +126,15 @@ h1, h2, h3, h4, h5, h6 {
 .toggler:hover {
   background: #888;
 }
+.duration {
+  float: right;
+  position: relative;
+  top: -19px;
+  background: rgba(0,0,0,0.8);
+  padding: 2px 5px;
+  color: white;
+  right: 0px;
+}
 
 .tabs.vertical li ul {
   padding-top:10px;
