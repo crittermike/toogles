@@ -11,7 +11,6 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
   window.searchCallback = function(data) {
     if (!$scope.videos) {
       $scope.videos = data.feed.entry;
-      console.log($scope.videos);
     } else {
       $scope.videos.push.apply($scope.videos, data.feed.entry);
     }
