@@ -36,6 +36,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
   }
 
   this.getVideos = function(type, query) {
+    query = encodeURIComponent(query);
     if (type === 'user') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/uploads?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
