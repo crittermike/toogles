@@ -25,6 +25,6 @@
 </div>
 <div class="columns" ng-class="{eight: showSidebar, twelve: !showSidebar}">
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
-    <iframe src="http://www.youtube.com/embed/{{urlToID(video.id.$t)}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    <iframe ng-src="http://www.youtube.com/embed/{{urlToID(video.id.$t)}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
