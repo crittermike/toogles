@@ -1,5 +1,5 @@
 <div ng-click="showSidebar = true" ng-show="!showSidebar" class="toggler"></div>
-<div ng-show="showSidebar" class="meta four columns">
+<div ng-show="showSidebar" class="meta three columns">
   <div class="row">
     <div class="two columns">
       <a title="Go back" class="hide-for-small back-menu" ng-click="goBack()"><i class="icon-arrow-left "></i></a>
@@ -23,7 +23,7 @@
   </ul>
   <p class="hide-for-small description" ng-bind-html="video.media$group.media$description.$t | htmlify"></p>
 </div>
-<div class="columns" ng-class="{eight: showSidebar, twelve: !showSidebar}">
+<div class="columns" ng-class="{nine: showSidebar, twelve: !showSidebar}">
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
     <iframe ng-src="http://www.youtube.com/embed/{{urlToID(video.id.$t)}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
   </div>
