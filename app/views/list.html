@@ -4,56 +4,7 @@
       <input ng-model="query" type="text" placeholder="fluffy bunnies">
       <button class="button expand">Search YouTube</button>
     </form>
-    <ul class="vertical tabs" ng-show="location.path().indexOf('/search') > -1">
-      <li>
-        <a>Sort</a>
-        <ul>
-          <li ng-class="{active: !sort}"><a ng-click="sort = false">Relevance</a></li>
-          <li ng-class="{active: sort == 'published'}"><a ng-click="sort = 'published'">Upload date</a></li>
-          <li ng-class="{active: sort == 'viewCount'}"><a ng-click="sort = 'viewCount'">View count</a></li>
-          <li ng-class="{active: sort == 'rating'}"><a ng-click="sort = 'rating'">Rating</a></li>
-        </ul>
-      </li>
-      <li>
-        <a>Upload Date</a>
-        <ul>
-          <li ng-class="{active: !time}"><a ng-click="time = false">Anytime</a></li>
-          <li ng-class="{active: time == 'today'}"><a ng-click="time = 'today'">Today</a></li>
-          <li ng-class="{active: time == 'this_week'}"><a ng-click="time = 'this_week'">This week</a></li>
-          <li ng-class="{active: time == 'this_month'}"><a ng-click="time = 'this_month'">This month</a></li>
-        </ul>
-      </li>
-      <li>
-        <a>Duration</a>
-        <ul>
-          <li ng-class="{active: !duration}"><a ng-click="duration = false">All</a></li>
-          <li ng-class="{active: duration == 'short'}"><a ng-click="duration = 'short'">Short (&lt; 4 minutes)</a></li>
-          <li ng-class="{active: duration == 'medium'}"><a ng-click="duration = 'medium'">Medium (4-20 minutes</a></li>
-          <li ng-class="{active: duration == 'long'}"><a ng-click="duration = 'long'">Long (&gt; 20 minutes)</a></li>
-        </ul>
-      </li>
-    </ul>
-    <div ng-show="location.path().indexOf('browse') > -1">
-      <ul class="hide-for-small vertical tabs">
-        <li>
-          <a href="#">Trending</a>
-          <ul>
-            <li ng-class="{active: location.path() == '/browse'}"><a ng-href="#/browse">Everything</a></li>
-            <li ng-class="{active: location.path().indexOf(category.key) > -1}" ng-repeat="category in categories"><a ng-href='#/browse/{{category.key}}'>{{category.title}}</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="hide-for-small vertical tabs">
-        <li>
-          <a href="#">Toogles Links</a>
-          <ul>
-            <li><a ng-href="https://chrome.google.com/webstore/detail/toogles/kljfdbkcacjeogbiiiikahgkmmlgdekf">Chrome Extension</a></li>
-            <li><a ng-href="http://github.com/mikecrittenden/toogles">Code on GitHub</a></li>
-            <li><a ng-href="http://twitter.com/mcrittenden">Twitter (@mcrittenden)</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <div ng-include src="'views/' + section + '.html'"></div>
   </div>
 </div>
 <div when-scrolled="loadMore()" class="nine columns">

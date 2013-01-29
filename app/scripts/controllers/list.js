@@ -7,6 +7,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
   $scope.sort = false;
   $scope.duration = false;
   $scope.time = false;
+  $scope.section = $location.path().split('/')[1];
 
   window.searchCallback = function(data) {
     if (!$scope.videos) {

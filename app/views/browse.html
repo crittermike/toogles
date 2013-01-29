@@ -1,0 +1,19 @@
+<ul class="hide-for-small vertical tabs">
+  <li>
+    <a href="#">Trending</a>
+    <ul>
+      <li ng-class="{active: location.path() == '/browse'}"><a ng-href="#/browse">Everything</a></li>
+      <li ng-class="{active: location.path().indexOf(category.key) > -1}" ng-repeat="category in categories"><a ng-href='#/browse/{{category.key}}'>{{category.title}}</a></li>
+    </ul>
+  </li>
+</ul>
+<ul class="hide-for-small vertical tabs">
+  <li>
+    <a href="#">Toogles Links</a>
+    <ul>
+      <li><a ng-href="https://chrome.google.com/webstore/detail/toogles/kljfdbkcacjeogbiiiikahgkmmlgdekf">Chrome Extension</a></li>
+      <li><a ng-href="http://github.com/mikecrittenden/toogles">Code on GitHub</a></li>
+      <li><a ng-href="http://twitter.com/mcrittenden">Twitter (@mcrittenden)</a></li>
+    </ul>
+  </li>
+</ul>
