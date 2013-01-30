@@ -5,23 +5,12 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', '$root
 
   $scope.location = $location; // Access $location inside the view.
   $scope.showSidebar = true;
+  $scope.backLink = '#' + ($rootScope.previous || '/browse');
 
   window.viewCallback = function(data) {
     $scope.video = data.entry;
+    $scope.video.video_id = youtube.urlToID($scope.video.id.$t)
     document.title = $scope.video.title.$t + " | Toogles";
-  }
-
-  $scope.urlToID = function(url) {
-    return youtube.urlToID(url);
-  }
-
-  // Go back to the previous page if one exists, otherwise the homepage.
-  $scope.goBack = function() {
-    if ($rootScope.previous) {
-      history.back();
-    } else {
-      $location.path('/browse');
-    }
   }
 
   youtube.getVideo($routeParams.id, 'viewCallback');

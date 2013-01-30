@@ -2,7 +2,7 @@
 <div ng-show="showSidebar" class="meta three columns">
   <div class="row">
     <div class="two columns">
-      <a title="Go back" class="hide-for-small back-menu" ng-click="goBack()"><i class="icon-arrow-left "></i></a>
+      <a title="Go back" class="hide-for-small back-menu" ng-href="{{backLink}}"><i class="icon-arrow-left "></i></a>
       <a title="Toggle sidebar" class="hide-for-small toggle-menu" ng-click="showSidebar = false"><i class="icon-reorder "></i></a>
     </div>
     <div class="ten columns">
@@ -12,7 +12,7 @@
       </form>
     </div>
   </div>
-  <h3><a href="http://youtube.com/watch?v={{urlToID(video.id.$t)}}&toogles=0">{{video.title.$t}}</a></h3>
+  <h3><a href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
   <div class="rating">
     <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
   </div>
@@ -25,6 +25,6 @@
 </div>
 <div class="columns" ng-class="{nine: showSidebar, twelve: !showSidebar}">
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
-    <iframe ng-src="http://www.youtube.com/embed/{{urlToID(video.id.$t)}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    <iframe ng-show="video" ng-src="http://www.youtube.com/embed/{{video.video_id}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
