@@ -2,28 +2,28 @@
   <li>
     <a>Sort</a>
     <ul>
-      <li ng-class="{active: !$parent.sort}"><a ng-click="$parent.sort = false">Relevance</a></li>
-      <li ng-class="{active: $parent.sort == 'published'}"><a ng-click="$parent.sort = 'published'">Upload date</a></li>
-      <li ng-class="{active: $parent.sort == 'viewCount'}"><a ng-click="$parent.sort = 'viewCount'">View count</a></li>
-      <li ng-class="{active: $parent.sort == 'rating'}"><a ng-click="$parent.sort = 'rating'">Rating</a></li>
+      <li ng-class="{active: !$parent.searchsort}"><a ng-click="$parent.searchsort = false">Relevance</a></li>
+      <li ng-class="{active: $parent.searchsort == 'published'}"><a ng-click="$parent.searchsort = 'published'">Upload date</a></li>
+      <li ng-class="{active: $parent.searchsort == 'viewCount'}"><a ng-click="$parent.searchsort = 'viewCount'">View count</a></li>
+      <li ng-class="{active: $parent.searchsort == 'rating'}"><a ng-click="$parent.searchsort = 'rating'">Rating</a></li>
     </ul>
   </li>
   <li>
     <a>Upload Date</a>
     <ul>
-      <li ng-class="{active: !$parent.time}"><a ng-click="$parent.time = false">Anytime</a></li>
-      <li ng-class="{active: $parent.time == 'today'}"><a ng-click="$parent.time = 'today'">Today</a></li>
-      <li ng-class="{active: $parent.time == 'this_week'}"><a ng-click="$parent.time = 'this_week'">This week</a></li>
-      <li ng-class="{active: $parent.time == 'this_month'}"><a ng-click="$parent.time = 'this_month'">This month</a></li>
+      <li ng-class="{active: !$parent.searchtime}"><a ng-click="$parent.searchtime = false">Anytime</a></li>
+      <li ng-class="{active: $parent.searchtime == 'today'}"><a ng-click="$parent.searchtime = 'today'">Today</a></li>
+      <li ng-class="{active: $parent.searchtime == 'this_week'}"><a ng-click="$parent.searchtime = 'this_week'">This week</a></li>
+      <li ng-class="{active: $parent.searchtime == 'this_month'}"><a ng-click="$parent.searchtime = 'this_month'">This month</a></li>
     </ul>
   </li>
   <li>
     <a>Duration</a>
     <ul>
-      <li ng-class="{active: !$parent.duration}"><a ng-click="$parent.duration = false">All</a></li>
-      <li ng-class="{active: $parent.duration == 'short'}"><a ng-click="$parent.duration = 'short'">Short (&lt; 4 minutes)</a></li>
-      <li ng-class="{active: $parent.duration == 'medium'}"><a ng-click="$parent.duration = 'medium'">Medium (4-20 minutes</a></li>
-      <li ng-class="{active: $parent.duration == 'long'}"><a ng-click="$parent.duration = 'long'">Long (&gt; 20 minutes)</a></li>
+      <li ng-class="{active: !$parent.searchduration}"><a ng-click="$parent.searchduration = false">All</a></li>
+      <li ng-class="{active: $parent.searchduration == 'short'}"><a ng-click="$parent.searchduration = 'short'">Short (&lt; 4 minutes)</a></li>
+      <li ng-class="{active: $parent.searchduration == 'medium'}"><a ng-click="$parent.searchduration = 'medium'">Medium (4-20 minutes</a></li>
+      <li ng-class="{active: $parent.searchduration == 'long'}"><a ng-click="$parent.searchduration = 'long'">Long (&gt; 20 minutes)</a></li>
     </ul>
   </li>
 </ul>

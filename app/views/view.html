@@ -1,9 +1,8 @@
-<div ng-click="showSidebar = true" ng-show="!showSidebar" class="toggler"></div>
 <div ng-show="showSidebar" class="sidebar three columns">
   <div class="row">
     <div class="two columns">
-      <a title="Go back" class="hide-for-small back-menu" ng-href="{{backLink}}"><i class="icon-arrow-left "></i></a>
-      <a title="Toggle sidebar" class="hide-for-small toggle-menu" ng-click="showSidebar = false"><i class="icon-reorder "></i></a>
+      <a title="Go home" class="hide-for-small back-menu" href="#/"><i class="icon-home"></i></a>
+      <a title="Toggle sidebar" class="hide-for-small toggle-menu" ng-click="showSidebar = false"><i class="icon-fullscreen"></i></a>
     </div>
     <div class="ten columns">
       <form class="search-form" ng-submit="location.path('/search/' + query)">
@@ -17,7 +16,7 @@
     <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()">Related</a></dd>
   </dl>
   <div class="meta" ng-show="!showRelated">
-    <h3><a href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
+    <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
     <div class="rating">
       <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
     </div>
@@ -33,7 +32,12 @@
   </div>
 </div>
 <div class="columns" ng-class="{nine: showSidebar, twelve: !showSidebar}">
+  <div class="expanded-info" ng-click="showSidebar = true" ng-show="!showSidebar">
+    <a class="icon" title="Go home" href="#/"><i class="icon-home"></i></a>
+    <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="icon-fullscreen"></i></a>
+    <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
+  </div>
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
-    <iframe ng-show="video" ng-src="http://www.youtube.com/embed/{{video.video_id}}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    <iframe ng-show="video" ng-src="{{video.embedurl}}" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>

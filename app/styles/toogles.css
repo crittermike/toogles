@@ -1,6 +1,9 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
+.container {
+  margin-top: 25px;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
@@ -9,13 +12,11 @@ h1, h2, h3, h4, h5, h6 {
   height: 5px;
   border-radius: 0;
 }
+.expanded-info a,
 .toggle-menu,
 .back-menu {
   font-size: 30px;
   margin-bottom: 8px;
-}
-.toggle-menu {
-  cursor: w-resize;
 }
 .video {
   display: block;
@@ -121,18 +122,22 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
   }
 }
-.toggler {
-  height: 100%;
-  width: 10px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: #ccc;
-  cursor: e-resize;
-  z-index: 100;
+.expanded-info a.icon {
+  display: inline-block !important;
+  margin-right: 15px;
 }
-.toggler:hover {
-  background: #888;
+.expanded-info h3 {
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: -40px;
+  text-align: center;
+}
+.expanded-info h3 a {
+  color: #222;
+}
+.expanded-info h3 a:hover {
+  color: #2ba6cb;
 }
 .duration {
   float: right;

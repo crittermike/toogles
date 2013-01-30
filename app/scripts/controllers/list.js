@@ -1,12 +1,11 @@
 /**
  * The controller used when searching/browsing videos.
  */
-tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$rootScope', 'youtube', function($scope, $routeParams, $location, $rootScope, youtube) {
-  $rootScope.previous = $location.path();
+tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtube', function($scope, $routeParams, $location, youtube) {
   $scope.location = $location;
-  $scope.sort = false;
-  $scope.duration = false;
-  $scope.time = false;
+  $scope.searchsort = false;
+  $scope.searchduration = false;
+  $scope.searchtime = false;
   $scope.section = $location.path().split('/')[1];
 
   window.searchCallback = function(data) {
@@ -45,7 +44,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
 
   $scope.search = function() {
     youtube.setPage($scope.page);
-    youtube.setCallback('searchCallback');;
+    youtube.setCallback('searchCallback');
     if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
       // This is a search with a specific query.
       document.title = $routeParams.query + " | Toogles";
@@ -74,10 +73,10 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
     }
   }
 
-  $scope.$watch('sort + time + duration', function() {
-    youtube.setSort($scope.sort);
-    youtube.setTime($scope.time);
-    youtube.setDuration($scope.duration);
+  $scope.$watch('searchsort + searchtime + searchduration', function() {
+    youtube.setSort($scope.searchsort);
+    youtube.setTime($scope.searchtime);
+    youtube.setDuration($scope.searchduration);
     $scope.videos = false;
     $scope.search();
   })
