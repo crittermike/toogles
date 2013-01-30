@@ -25,19 +25,22 @@ tooglesApp.service('youtube', ['$http', function($http) {
     callback = fn;
   }
 
-  this.getVideo = function(id, callback) {
+  this.getVideo = function(id) {
     var url = 'https://gdata.youtube.com/feeds/api/videos/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
     $http.jsonp(url);
   }
 
-  this.getUser = function(id, callback) {
+  this.getUser = function(id) {
     var url = 'https://gdata.youtube.com/feeds/api/users/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
     $http.jsonp(url);
   }
 
   this.getVideos = function(type, query) {
     query = encodeURIComponent(query);
-    if (type === 'user') {
+    if (type === 'related') {
+      // All videos by a user
+      var url = urlBase + 'videos/' + query + '/related?&v=2&alt=json&callback=' + callback;
+    } else if (type === 'user') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/uploads?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
     } else if (type === 'user_favorites') {
