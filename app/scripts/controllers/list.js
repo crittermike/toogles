@@ -65,7 +65,8 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', '$root
       }
       document.title = $routeParams.username + " | Toogles";;
       youtube.getVideos(type, $routeParams.username);
-      youtube.getUser($routeParams.username, 'userCallback');
+      youtube.setCallback('userCallback');
+      youtube.getUser($routeParams.username);
 
     } else {
       document.title = "Toogles | Awesome goggles for YouTube";

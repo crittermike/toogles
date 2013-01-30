@@ -23,6 +23,14 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   background: black;
 }
+.related {
+  max-height: 475px;
+  overflow-y: scroll;
+}
+.related .four {
+  width: 100%;
+  float: none;
+}
 .video h3 {
   text-align: left;
   font-size: 14px;
@@ -87,15 +95,15 @@ h1, h2, h3, h4, h5, h6 {
   overflow-x: hidden;
   padding-right: 10px;
 }
-.meta ::-webkit-scrollbar, .meta ::-webkit-scrollbar:horizontal {
+.sidebar ::-webkit-scrollbar, .sidebar ::-webkit-scrollbar:horizontal {
   width: 6px;
 }
-.meta ::-webkit-scrollbar-track {
+.sidebar ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-.meta ::-webkit-scrollbar-thumb {
+.sidebar ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #ccc;

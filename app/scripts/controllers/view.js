@@ -5,6 +5,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', '$root
 
   $scope.location = $location; // Access $location inside the view.
   $scope.showSidebar = true;
+  $scope.showRelated = false;
   $scope.backLink = '#' + ($rootScope.previous || '/browse');
 
   window.viewCallback = function(data) {
@@ -13,5 +14,18 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', '$root
     document.title = $scope.video.title.$t + " | Toogles";
   }
 
-  youtube.getVideo($routeParams.id, 'viewCallback');
+  window.relatedCallback = function(data) {
+    $scope.videos = data.feed.entry;
+  }
+
+  $scope.fetchRelated = function() {
+    if (!$scope.videos) {
+      youtube.setCallback('relatedCallback');
+      youtube.getVideos('related', $routeParams.id);
+    }
+    $scope.showRelated = true;
+  }
+
+  youtube.setCallback('viewCallback');
+  youtube.getVideo($routeParams.id);
 }]);
