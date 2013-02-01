@@ -11,6 +11,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     $scope.video = data.entry;
     $scope.video.video_id = youtube.urlToID($scope.video.id.$t)
     $scope.video.embedurl = "http://www.youtube.com/embed/" + $scope.video.video_id + "?autoplay=1";
+    onYouTubeIframeAPIReady($scope.video.video_id);
     document.title = $scope.video.title.$t + " | Toogles";
   }
 
@@ -35,4 +36,24 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
   youtube.setCallback('viewCallback');
   youtube.getVideo($routeParams.id);
+
+  started = false;
+
+  var onYouTubeIframeAPIReady = function(id) {
+    var player = new YT.Player('player', {
+      videoId: id,
+      events: {
+        'onStateChange': function (event) {
+          if (event.data == 1) {
+            started = true;
+          }
+          if (started && event.data == -1) {
+            var video_url = event.target.i.videoUrl;
+            var video_id = video_url.replace('http://www.youtube.com/watch?v=', '').replace('&feature=player_embedded', '');
+            window.location = '#/view/' + video_id;
+          }
+        }
+      }
+    });
+  }
 }]);
