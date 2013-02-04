@@ -1,6 +1,9 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
+.ng-cloak {
+  display: none;
+}
 .container {
   margin-top: 25px;
 }
