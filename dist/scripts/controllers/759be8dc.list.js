@@ -7,6 +7,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.searchduration = false;
   $scope.searchtime = false;
   $scope.section = $location.path().split('/')[1];
+  $scope.searchtype = 'videos'
 
   window.searchCallback = function(data) {
     if (!$scope.videos) {
@@ -18,6 +19,13 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
   window.userCallback = function(data) {
     $scope.user = data.entry;
+  }
+
+  $scope.getLink = function(video, index) {
+    if ($scope.resulttype == 'playlists') {
+      return '#/playlist/' + video.yt$playlistId.$t;
+    }
+    return '#/view/' + youtube.urlToID(video.media$group.yt$videoid.$t);
   }
 
   $scope.page = 0;
@@ -61,11 +69,14 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
       var type = 'user';
       if ($routeParams.feed !== undefined) {
         type += '_' + $routeParams.feed;
+        if ($routeParams.feed === 'playlists') {
+          $scope.resulttype = 'playlists'
+        }
       }
       document.title = $routeParams.username + " | Toogles";;
       youtube.getVideos(type, $routeParams.username);
       youtube.setCallback('userCallback');
-      youtube.getUser($routeParams.username);
+      youtube.getItem('users', $routeParams.username);
 
     } else {
       document.title = "Toogles | Awesome goggles for YouTube";
@@ -73,11 +84,13 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
     }
   }
 
-  $scope.$watch('searchsort + searchtime + searchduration', function() {
+  $scope.$watch('searchsort + searchtime + searchduration + searchtype', function() {
+    $scope.videos = false;
     youtube.setSort($scope.searchsort);
     youtube.setTime($scope.searchtime);
     youtube.setDuration($scope.searchduration);
-    $scope.videos = false;
+    youtube.setType($scope.searchtype);
+    $scope.resulttype = $scope.searchtype;
     $scope.search();
   })
 
