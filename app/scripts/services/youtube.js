@@ -39,18 +39,27 @@ tooglesApp.service('youtube', ['$http', function($http) {
     if (type === 'related') {
       // All videos by a user
       var url = urlBase + 'videos/' + query + '/related?&v=2&alt=json&callback=' + callback;
+
     } else if (type === 'user') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/uploads?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+
     } else if (type === 'user_favorites') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/favorites?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+
     } else if (type === 'user_subscriptions') {
       // All videos by a user
       var url = urlBase + 'users/' + query + '/newsubscriptionvideos?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+
+    } else if (type === 'user_playlists') {
+      // All videos by a user
+      var url = urlBase + 'users/' + query + '/playlists?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
+
     } else if (type === 'category') {
       // All videos within a category
       var url = urlBase + "standardfeeds/most_viewed_" + query + "?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
+
     } else if (type === 'search') {
       // A search query for videos
       path = 'videos';
@@ -64,7 +73,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
       if (duration) {
         url += '&duration=' + duration;
       }
-      if (orderBy) {
+      if (orderBy && searchType != 'playlists') {
         url += '&orderby=' + orderBy;
       }
     } else {

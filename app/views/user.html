@@ -12,5 +12,6 @@
     <li ng-class="{active: location.path().split('/').length == 3}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/">Uploads</a></li>
     <li ng-class="{active: location.path().indexOf('subscriptions') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/subscriptions">Subscriptions</a></li>
     <li ng-class="{active: location.path().indexOf('favorites') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/favorites">Favorites</a></li>
+    <li ng-class="{active: location.path().indexOf('playlists') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/playlists">Playlists</a></li>
   </ul>
 </div>

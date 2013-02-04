@@ -6,7 +6,7 @@
       <li ng-class="{active: $parent.searchtype == 'playlists'}"><a ng-click="$parent.searchtype = 'playlists'">Playlists</a></li>
     </ul>
   </li>
-  <li>
+  <li ng-show="$parent.searchtype != 'playlists'">
     <a>Sort</a>
     <ul>
       <li ng-class="{active: !$parent.searchsort}"><a ng-click="$parent.searchsort = false">Relevance</a></li>
@@ -15,7 +15,7 @@
       <li ng-class="{active: $parent.searchsort == 'rating'}"><a ng-click="$parent.searchsort = 'rating'">Rating</a></li>
     </ul>
   </li>
-  <li>
+  <li ng-show="$parent.searchtype != 'playlists'">
     <a>Upload Date</a>
     <ul>
       <li ng-class="{active: !$parent.searchtime}"><a ng-click="$parent.searchtime = false">Anytime</a></li>
@@ -24,7 +24,7 @@
       <li ng-class="{active: $parent.searchtime == 'this_month'}"><a ng-click="$parent.searchtime = 'this_month'">This month</a></li>
     </ul>
   </li>
-  <li>
+  <li ng-show="$parent.searchtype != 'playlists'">
     <a>Duration</a>
     <ul>
       <li ng-class="{active: !$parent.searchduration}"><a ng-click="$parent.searchduration = false">All</a></li>
