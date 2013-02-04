@@ -38,6 +38,6 @@
     <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
   </div>
   <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
-    <iframe id="player" ng-show="video" ng-src="{{video.embedurl}}" frameborder="0" allowfullscreen></iframe>
+    <iframe id="player" ng-show="video" src="{{video.embedurl}}" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
