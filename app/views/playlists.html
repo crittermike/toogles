@@ -1,0 +1,7 @@
+<div ng-repeat="video in videos" class="four columns">
+  <a ng-href="{{getLink(video, $index)}}" class="video">
+    <h3><span>{{video.title.$t}}</span></h3>
+    <img ng-src="{{video.media$group.media$thumbnail[1].url}}" />
+    <div class="duration">{{video.yt$countHint.$t}} videos</div>
+  </a>
+</div>

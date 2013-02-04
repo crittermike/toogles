@@ -8,6 +8,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
   var duration = false;
   var time = false;
   var orderBy = false;
+  var searchType = 'videos';
 
   this.setPage = function(page) {
     offset = page * count + 1;
@@ -21,17 +22,15 @@ tooglesApp.service('youtube', ['$http', function($http) {
   this.setDuration = function(length) {
     duration = length;
   }
+  this.setType = function(type) {
+    searchType = type;
+  }
   this.setCallback = function(fn) {
     callback = fn;
   }
 
-  this.getVideo = function(id) {
-    var url = 'https://gdata.youtube.com/feeds/api/videos/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
-    $http.jsonp(url);
-  }
-
-  this.getUser = function(id) {
-    var url = 'https://gdata.youtube.com/feeds/api/users/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
+  this.getItem = function(type, id) {
+    var url = 'https://gdata.youtube.com/feeds/api/' + type + '/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
     $http.jsonp(url);
   }
 
@@ -54,7 +53,11 @@ tooglesApp.service('youtube', ['$http', function($http) {
       var url = urlBase + "standardfeeds/most_viewed_" + query + "?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
     } else if (type === 'search') {
       // A search query for videos
-      var url = urlBase + "videos?q=" + query + "&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
+      path = 'videos';
+      if (searchType == 'playlists') {
+        path = 'playlists/snippets';
+      }
+      var url = urlBase + path + "?q=" + query + "&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
       if (time) {
         url += '&time=' + time;
       }

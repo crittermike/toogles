@@ -13,7 +13,7 @@
   </div>
   <dl class="hide-for-small tabs two-up">
     <dd ng-class="{active: !showRelated}"><a href="" ng-click="showRelated = false">Info</a></dd>
-    <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()">Related</a></dd>
+    <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()">{{videoTab}}</a></dd>
   </dl>
   <div class="meta" ng-show="!showRelated">
     <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
