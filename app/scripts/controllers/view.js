@@ -13,12 +13,12 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     if ($scope.section === 'view') {
       $scope.video = data.entry;
       $scope.video.video_id = $routeParams.id;
-      $scope.video.embedurl = "https://www.youtube.com/embed/" + $scope.video.video_id + "?autoplay=1";
+      $scope.video.embedurl = "http://www.youtube.com/embed/" + $scope.video.video_id + "?autoplay=1";
     } else {
       var start = $routeParams.start || 0;
       $scope.video = data.feed.entry[start];
       $scope.video.video_id = $scope.video.media$group.yt$videoid.$t;
-      $scope.video.embedurl = "https://www.youtube.com/embed/videoseries?list=" + $routeParams.id + "&autoplay=1&index=" + start;
+      $scope.video.embedurl = "http://www.youtube.com/embed/videoseries?list=" + $routeParams.id + "&autoplay=1&index=" + start;
       $scope.videos = data.feed.entry;
     }
     onYouTubeIframeAPIReady($scope.video.video_id, $scope.section);
@@ -70,7 +70,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
             // When a new video is started in an existing player, open up its dedicated page.
             if (section === 'view') {
               var video_url = event.target.getVideoUrl();
-              var video_id = video_url.replace('https://www.youtube.com/watch?v=', '').replace('&feature=player_embedded', '');
+              var video_id = video_url.replace('http://www.youtube.com/watch?v=', '').replace('&feature=player_embedded', '');
               window.location = '#/view/' + video_id;
             } else if (section === 'playlist') {
               window.location = '#/playlist/' + event.target.getPlaylistId() + '/' + event.target.getPlaylistIndex();
