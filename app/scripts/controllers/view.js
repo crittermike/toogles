@@ -13,12 +13,12 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     if ($scope.section === 'view') {
       $scope.video = data.entry;
       $scope.video.video_id = $routeParams.id;
-      $scope.video.embedurl = "http://www.youtube.com/embed/" + $scope.video.video_id + "?autoplay=1";
+      $scope.video.embedurl = "http://www.youtube.com/embed/" + $scope.video.video_id + "?autoplay=1&theme=light&color=white&iv_load_policy=3";
     } else {
       var start = $routeParams.start || 0;
       $scope.video = data.feed.entry[start];
       $scope.video.video_id = $scope.video.media$group.yt$videoid.$t;
-      $scope.video.embedurl = "http://www.youtube.com/embed/videoseries?list=" + $routeParams.id + "&autoplay=1&index=" + start;
+      $scope.video.embedurl = "http://www.youtube.com/embed/videoseries?list=" + $routeParams.id + "&autoplay=1&theme=light&color=white&iv_load_policy=3&index=" + start;
       $scope.videos = data.feed.entry;
     }
     onYouTubeIframeAPIReady($scope.video.video_id, $scope.section);
