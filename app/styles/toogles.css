@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .video img {
   cursor: pointer;
+  margin-top: 26px;
 }
 .search-form input {
   margin-bottom: 0;
