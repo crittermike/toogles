@@ -3,7 +3,7 @@ tooglesApp.directive('whenScrolled', function() {
     var raw = elm[0];
 
     window.onscroll = function() {
-      if (window.innerHeight + document.body.scrollTop >= document.body.offsetHeight) {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
         scope.$apply(attr.whenScrolled);
       }
     };
