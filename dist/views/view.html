@@ -28,7 +28,7 @@
       </ul>
       <p class="hide-for-small description" ng-bind-html="video.media$group.media$description.$t | htmlify"></p>
     </div>
-    <div class="related" ng-show="showRelated">
+    <div class="related hide-for-small" ng-show="showRelated">
       <div ng-include src="'views/videos.html'"></div>
     </div>
   </div>
