@@ -3,11 +3,11 @@
  */
 tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtube', function($scope, $routeParams, $location, youtube) {
   $scope.location = $location;
-  $scope.searchsort = false;
-  $scope.searchduration = false;
-  $scope.searchtime = false;
+  $scope.searchsort = $location.search()['searchsort'] || false;
+  $scope.searchduration = $location.search()['searchduration'] || false;
+  $scope.searchtime = $location.search()['searchtime'] || false;
   $scope.section = $location.path().split('/')[1];
-  $scope.searchtype = 'videos'
+  $scope.searchtype = $location.search()['searchtype'] || 'videos';
 
   window.searchCallback = function(data) {
     if (!$scope.videos) {
