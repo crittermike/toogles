@@ -187,3 +187,16 @@ h1, h2, h3, h4, h5, h6 {
 .tabs.vertical li ul li,.tabs.vertical li ul li.active {
   border:none;
 }
+
+.restricted h3 {
+  text-align: center;
+  margin-top: 100px;
+}
+.restricted h3 a {
+  font-weight: bold;
+}
+.restricted img {
+  margin: 0 auto;
+  display: block;
+  margin-top: 40px;
+}

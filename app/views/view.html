@@ -38,8 +38,19 @@
       <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="icon-fullscreen"></i></a>
       <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
     </div>
-    <div class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
-      <iframe id="player" ng-show="video" src="{{video.embedurl}}" frameborder="0" allowfullscreen></iframe>
+    <div ng-show="!video.restricted && !video.deleted" class="flex-video {{video.media$group.yt$aspectRatio.$t}}">
+      <div id="player"></div>
     </div>
+      <div class="restricted">
+          <div ng-show="video.restricted">
+              <h3>Embedding is disabled for this video, so Toogles
+                  can't play it. ☹<br /><br /><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">Watch it on YouTube &raquo;</a></h3>
+              <img src="http://i.imgur.com/nlmzGJ7.gif" />
+          </div>
+          <div ng-show="video.deleted">
+              <h3>This video has been deleted or marked private.</h3>
+              <img src="http://i.imgur.com/rMwJsyP.gif" />
+          </div>
+      </div>
   </div>
 </div>
