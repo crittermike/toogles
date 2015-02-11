@@ -1,2 +1,5 @@
 temp/*
 .idea/*
+dist
+node_modules
+bower_components

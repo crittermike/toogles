@@ -1,7 +1,14 @@
 'use strict';
 
-// Angular setup
-var tooglesApp = angular.module('tooglesApp', ['ngSanitize'])
+/**
+ * @ngdoc overview
+ * @name tooglesApp
+ * @description
+ * # tooglesOverhaulApp
+ *
+ * Main module of the application.
+ */
+var tooglesApp = angular.module('tooglesApp', ['ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/browse', { templateUrl: 'views/list.html', controller: 'ListCtrl' });
     $routeProvider.when('/browse/:category', { templateUrl: 'views/list.html', controller: 'ListCtrl' });

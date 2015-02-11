@@ -1,0 +1,286 @@
+/* line 1, ../../app/styles/main.scss */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* line 4, ../../app/styles/main.scss */
+.ng-cloak {
+  display: none;
+}
+
+/* line 7, ../../app/styles/main.scss */
+.container {
+  margin-top: 25px;
+}
+
+/* line 10, ../../app/styles/main.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+}
+
+/* line 14, ../../app/styles/main.scss */
+.progress {
+  height: 5px;
+  border-radius: 0;
+}
+
+/* line 18, ../../app/styles/main.scss */
+.expanded-info a,
+.toggle-menu,
+.back-menu {
+  font-size: 26px;
+}
+
+/* line 23, ../../app/styles/main.scss */
+.toogles-video {
+  display: block;
+  position: relative;
+  text-align: center;
+  background: black;
+}
+/* line 28, ../../app/styles/main.scss */
+.toogles-video h3 {
+  text-align: left;
+  font-size: 14px;
+  color: white;
+  background: black;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  line-height: 1.2;
+}
+/* line 38, ../../app/styles/main.scss */
+.toogles-video h3 span {
+  padding: 3%;
+  display: block;
+  font-weight: normal;
+}
+/* line 45, ../../app/styles/main.scss */
+.toogles-video img {
+  cursor: pointer;
+  margin-top: 26px;
+}
+
+/* line 50, ../../app/styles/main.scss */
+.related {
+  max-height: 475px;
+  overflow-y: scroll;
+  padding-top: 20px;
+}
+/* line 54, ../../app/styles/main.scss */
+.related .large-4 {
+  width: 100%;
+  float: none;
+}
+
+/* line 60, ../../app/styles/main.scss */
+.search-form input {
+  margin-bottom: 0;
+}
+
+/* line 64, ../../app/styles/main.scss */
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* line 68, ../../app/styles/main.scss */
+.rating {
+  height: 8px;
+  background-color: #C60F13;
+  margin-bottom: 30px;
+  margin-top: -2px;
+}
+/* line 73, ../../app/styles/main.scss */
+.rating .like {
+  height: 8px;
+  background-color: #457A1A;
+}
+
+/* line 78, ../../app/styles/main.scss */
+.meta {
+  margin-top: 20px;
+}
+/* line 80, ../../app/styles/main.scss */
+.meta h3 {
+  font-size: 40px;
+  line-height: 1.3;
+}
+/* line 83, ../../app/styles/main.scss */
+.meta h3 a {
+  color: #222;
+}
+/* line 86, ../../app/styles/main.scss */
+.meta h3 a:hover {
+  color: #2ba6cb;
+}
+/* line 90, ../../app/styles/main.scss */
+.meta ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+/* line 94, ../../app/styles/main.scss */
+.meta ul li {
+  font-size: 18px;
+}
+/* line 98, ../../app/styles/main.scss */
+.meta .rating {
+  margin-bottom: 20px;
+}
+/* line 101, ../../app/styles/main.scss */
+.meta a:hover {
+  color: black;
+}
+
+/* line 106, ../../app/styles/main.scss */
+.description {
+  max-height: 250px;
+  overflow-x: hidden;
+  padding-right: 10px;
+  font-size: 0.9rem;
+}
+
+/* line 112, ../../app/styles/main.scss */
+.nav-section {
+  border: 1px solid #efefef;
+  margin-bottom: 15px;
+}
+/* line 115, ../../app/styles/main.scss */
+.nav-section h4 {
+  padding: 10px 15px;
+  background: #efefef;
+  margin: 0;
+}
+/* line 120, ../../app/styles/main.scss */
+.nav-section .side-nav {
+  padding: 8px 0;
+}
+/* line 122, ../../app/styles/main.scss */
+.nav-section .side-nav li {
+  margin-bottom: 0;
+}
+/* line 123, ../../app/styles/main.scss */
+.nav-section .side-nav li a {
+  color: #888;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+/* line 127, ../../app/styles/main.scss */
+.nav-section .side-nav li.active a {
+  color: black !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+/* line 131, ../../app/styles/main.scss */
+.nav-section .side-nav li a:hover {
+  color: black;
+}
+
+/* line 141, ../../app/styles/main.scss */
+.sidebar dl.tabs dd {
+  width: 50%;
+  text-align: center;
+}
+/* line 144, ../../app/styles/main.scss */
+.sidebar dl.tabs dd a {
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+}
+/* line 148, ../../app/styles/main.scss */
+.sidebar dl.tabs dd.active a {
+  border: 1px solid #ccc;
+  border-bottom: 1px solid white;
+}
+/* line 153, ../../app/styles/main.scss */
+.sidebar ::-webkit-scrollbar, .sidebar .sidebar ::-webkit-scrollbar:horizontal {
+  width: 6px;
+}
+/* line 156, ../../app/styles/main.scss */
+.sidebar ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+/* line 161, ../../app/styles/main.scss */
+.sidebar ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ccc;
+}
+
+/* line 167, ../../app/styles/main.scss */
+.fixed {
+  width: 25%;
+  margin-top: 25px;
+  padding: 0 15px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 767px) {
+  /* line 175, ../../app/styles/main.scss */
+  .fixed {
+    position: static;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+/* line 183, ../../app/styles/main.scss */
+.expanded-info a.icon {
+  display: inline-block !important;
+  margin-right: 15px;
+}
+/* line 187, ../../app/styles/main.scss */
+.expanded-info h3 {
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: -40px;
+  text-align: center;
+}
+/* line 193, ../../app/styles/main.scss */
+.expanded-info h3 a {
+  color: #222;
+}
+/* line 196, ../../app/styles/main.scss */
+.expanded-info h3 a:hover {
+  color: #2ba6cb;
+}
+
+/* line 202, ../../app/styles/main.scss */
+.duration {
+  float: right;
+  position: relative;
+  top: -27px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2px 5px;
+  color: white;
+  right: 0px;
+}
+
+/* line 212, ../../app/styles/main.scss */
+.video-list {
+  padding-left: 0;
+}
+
+/* line 217, ../../app/styles/main.scss */
+.restricted h3 {
+  text-align: center;
+  margin-top: 100px;
+}
+/* line 220, ../../app/styles/main.scss */
+.restricted h3 a {
+  font-weight: bold;
+}
+/* line 224, ../../app/styles/main.scss */
+.restricted img {
+  margin: 0 auto;
+  display: block;
+  margin-top: 40px;
+}
+
+/* line 231, ../../app/styles/main.scss */
+body.dark {
+  background: #333 !important;
+  color: #ccc !important;
+}

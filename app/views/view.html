@@ -1,18 +1,18 @@
 <div ng-show="video">
-  <div ng-show="showSidebar" class="sidebar three columns">
+  <div ng-show="showSidebar" class="sidebar large-3 medium-4 columns">
     <div class="row">
-      <div class="two columns">
-        <a title="Go home" class="hide-for-small back-menu" href="#/"><i class="icon-home"></i></a>
-        <a title="Toggle sidebar" class="hide-for-small toggle-menu" ng-click="showSidebar = false"><i class="icon-fullscreen"></i></a>
+      <div class="medium-2 columns">
+        <a title="Go home" class="hide-for-small back-menu" href="#/"><i class="fa fa-home"></i></a>
+        <a title="Toggle sidebar" class="hide-for-small toggle-menu" ng-click="showSidebar = false"><i class="fa fa-expand"></i></a>
       </div>
-      <div class="ten columns">
+      <div class="medium-10 columns">
         <form class="search-form" ng-submit="location.path('/search/' + query)">
           <input ng-model="query" type="text" placeholder="fluffy bunnies">
-          <button class="button expand">Search YouTube</button>
+          <button class="button small expand">Search YouTube</button>
         </form>
       </div>
     </div>
-    <dl class="hide-for-small tabs two-up">
+    <dl class="hide-for-small tabs">
       <dd ng-class="{active: !showRelated}"><a href="" ng-click="showRelated = false">Info</a></dd>
       <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()">{{videoTab}}</a></dd>
     </dl>
@@ -22,9 +22,9 @@
         <div class="like" style="width: {{100 * (video.gd$rating.average / 5)}}%;"></div>
       </div>
       <ul>
-        <li><i class="icon-user"></i> <a href="#/user/{{video.author[0].uri.$t.split('/').pop()}}">{{video.author[0].name.$t}}</a></li>
-        <li><i class="icon-eye-open"></i> {{video.yt$statistics.viewCount | number:0}} views</li>
-        <li><i class="icon-calendar"></i> {{video.published.$t | date}}</li>
+        <li><i class="fa fa-user"></i>&nbsp;&nbsp;<a href="#/user/{{video.author[0].uri.$t.split('/').pop()}}">{{video.author[0].name.$t}}</a></li>
+        <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{video.yt$statistics.viewCount | number:0}} views</li>
+        <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{video.published.$t | date}}</li>
       </ul>
       <p class="hide-for-small description" ng-bind-html="video.media$group.media$description.$t | htmlify"></p>
     </div>
@@ -32,10 +32,10 @@
       <div ng-include src="'views/videos.html'"></div>
     </div>
   </div>
-  <div class="columns" ng-class="{nine: showSidebar, twelve: !showSidebar}">
+  <div class="columns" ng-class="{'large-9 medium-8': showSidebar, 'medium-12': !showSidebar}">
     <div class="expanded-info" ng-click="showSidebar = true" ng-show="!showSidebar">
-      <a class="icon" title="Go home" href="#/"><i class="icon-home"></i></a>
-      <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="icon-fullscreen"></i></a>
+      <a class="icon" title="Go home" href="#/"><i class="fa fa-home"></i></a>
+      <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="fa fa-expand"></i></a>
       <h3><a title="View on YouTube" href="http://youtube.com/watch?v={{video.video_id}}&toogles=0">{{video.title.$t}}</a></h3>
     </div>
     <div ng-show="!video.restricted && !video.deleted" class="flex-video {{video.media$group.yt$aspectRatio.$t}}">

@@ -1,13 +1,13 @@
-<div class="three columns">
+<div class="medium-3 columns">
   <div class="fixed">
     <form class="search-form" ng-submit="location.path('/search/' + query)">
       <input ng-model="query" type="text" placeholder="fluffy bunnies">
-      <button class="button expand">Search YouTube</button>
+      <button class="button small expand">Search YouTube</button>
     </form>
     <div ng-include src="'views/' + section + '.html'"></div>
   </div>
 </div>
-<div when-scrolled="loadMore()" class="nine columns">
+<div when-scrolled="loadMore()" class="medium-9 video-list columns">
   <div ng-include src="'views/' + resulttype + '.html'"></div>
 </div>
 
