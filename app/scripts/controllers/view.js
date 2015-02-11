@@ -57,6 +57,8 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
   started = false;
 
   var onYouTubeIframeAPIReady = function(id, section) {
+    var starttime = $routeParams.starttime || 0;
+
     var player = new YT.Player('player', {
       'videoId': id,
       'playerVars': {
@@ -64,7 +66,8 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
         'theme': 'light',
         'color': 'white',
         'iv_load_policy': 3,
-        'origin': 'http://toogl.es'
+        'origin': 'http://toogl.es',
+        'start': starttime
       },
       'events': {
         'onError': function(event) {
