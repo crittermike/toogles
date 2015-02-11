@@ -1,5 +1,6 @@
 temp/*
 .idea/*
-dist
+dist/*
 node_modules
 bower_components
+.tmp/*
