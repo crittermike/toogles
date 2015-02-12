@@ -12,27 +12,27 @@ tooglesApp.service('youtube', ['$http', function($http) {
 
   this.setPage = function(page) {
     offset = page * count + 1;
-  }
+  };
   this.setSort = function(sort) {
     orderBy = sort;
-  }
+  };
   this.setTime = function(when) {
     time = when;
-  }
+  };
   this.setDuration = function(length) {
     duration = length;
-  }
+  };
   this.setType = function(type) {
     searchType = type;
-  }
+  };
   this.setCallback = function(fn) {
     callback = fn;
-  }
+  };
 
   this.getItem = function(type, id) {
     var url = 'https://gdata.youtube.com/feeds/api/' + type + '/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
     $http.jsonp(url);
-  }
+  };
 
   this.getVideos = function(type, query) {
     query = encodeURIComponent(query);
@@ -62,7 +62,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
 
     } else if (type === 'search') {
       // A search query for videos
-      path = 'videos';
+      var path = 'videos';
       if (searchType == 'playlists') {
         path = 'playlists/snippets';
       }
@@ -81,7 +81,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
       var url = urlBase + "standardfeeds/most_viewed?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
     }
     $http.jsonp(url);
-  }
+  };
 
   // Take a URL with an ID in it and grab the ID out of it. Helper function for YouTube URLs.
   this.urlToID = function(url) {
@@ -92,10 +92,10 @@ tooglesApp.service('youtube', ['$http', function($http) {
       }
       return parts.pop();
     }
-  }
+  };
 
   this.formatDuration = function(seconds) {
-    sec_numb    = parseInt(seconds);
+    var sec_numb    = parseInt(seconds);
     var hours   = Math.floor(sec_numb / 3600);
     var minutes = Math.floor((sec_numb - (hours * 3600)) / 60);
     var seconds = sec_numb - (hours * 3600) - (minutes * 60);

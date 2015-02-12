@@ -54,7 +54,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     youtube.getItem('playlists', $routeParams.id);
   }
 
-  started = false;
+  var started = false;
 
   var onYouTubeIframeAPIReady = function(id, section) {
     var starttime = $routeParams.starttime || 0;
