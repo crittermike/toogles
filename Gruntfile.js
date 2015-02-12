@@ -414,6 +414,22 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        exclude: [".git*","*.scss","node_modules"],
+        recursive: true
+      },
+      prod: {
+        options: {
+          src: "dist/",
+          dest: "/home/mcrittenden/webapps/toog",
+          host: "mcrittenden@108.168.213.89",
+          delete: true // Careful this option could cause data loss, read the docs!
+        }
+      }
     }
   });
 
