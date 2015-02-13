@@ -3,8 +3,6 @@
 /**
  * @ngdoc overview
  * @name tooglesApp
- * @description
- * # tooglesOverhaulApp
  *
  * Main module of the application.
  */

@@ -7,7 +7,7 @@ bulk that comes along with YouTube.com
 
 Toogles is built on top of Angular.js (no jQuery) and Zurb Foundation.
 
-### Contributing
+### Contributing (it's only 5 commands!)
 
 Toogles is a single page JS app with no back end, so it's incredibly easy
 to set up locally. 

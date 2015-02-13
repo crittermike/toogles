@@ -9,6 +9,15 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.section = $location.path().split('/')[1];
   $scope.videoTab = $scope.section === 'view' ? 'Related' : 'Playlist';
 
+  if (localStorage.tooglesDarkMode === "true") {
+    $scope.$parent.darkmode = true;
+  }
+  $scope.$watch('darkmode', function (newVal, oldVal, scope) {
+    if (typeof newVal !== "undefined" && newVal !== "undefined") {
+      localStorage.tooglesDarkMode = newVal;
+    }
+  });
+
   window.viewCallback = function(data) {
     if ($scope.section === 'view') {
       $scope.video = data.entry;
@@ -56,6 +65,14 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
   var started = false;
 
+  if ($scope.$parent.darkmode) {
+    var theme = 'dark';
+    var color = 'black';
+  } else {
+    var theme = 'light';
+    var color = 'white';
+  }
+
   var onYouTubeIframeAPIReady = function(id, section) {
     var starttime = $routeParams.starttime || 0;
 
@@ -63,8 +80,8 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
       'videoId': id,
       'playerVars': {
         'autoplay': 1,
-        'theme': 'light',
-        'color': 'white',
+        'theme': theme,
+        'color': color,
         'iv_load_policy': 3,
         'origin': 'http://toogl.es',
         'start': starttime

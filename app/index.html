@@ -17,10 +17,20 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="tooglesApp">
+<body ng-app="tooglesApp" ng-class="{dark: darkmode}">
+
 
     <div class="container row" ng-view></div>
     <script src="http://www.youtube.com/iframe_api"></script>
+
+    <div class="theme-switcher">
+        <span ng-click="darkmode = false" class="theme-label">Light</span>
+        <span class="switch tiny radius">
+            <input id="theme-switch" type="checkbox" ng-model="darkmode">
+            <label style="overflow: hidden;" for="theme-switch">Toggle Night Mode</label>
+        </span>
+        <span ng-click="darkmode = true" class="theme-label">Dark</span>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>

@@ -229,8 +229,90 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.theme-switcher {
+  position: fixed;
+  bottom: 0px;
+  overflow: hidden;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  height: 44px;
+  z-index: 1000;
+  span.theme-label {
+    color: white;
+    position: relative;
+    top: -5px;
+  }
+  .switch {
+    margin: 0 8px;
+  }
+}
+
 body.dark {
-  background: #333 !important;
+  background: #222 !important;
   color: #ccc !important;
+  h1, h2, h3, h4, h5, h6 {
+    color: #ccc !important;
+  }
+  .meta {
+    h3 {
+      a {
+        color: #ccc !important;
+      }
+    }
+    a {
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .sidebar {
+    dl.tabs dd {
+      a {
+        border: none;
+        color: #ccc;
+        border-bottom: 1px solid #555;
+      }
+      &.active a {
+        color: #ccc;
+        border: 1px solid #555;
+        border-bottom: 1px solid #222;
+      }
+    }
+  }
+  .expanded-info {
+    h3 {
+      a {
+        color: #ccc;
+      }
+    }
+  }
+  .nav-section {
+    border-color: #333;
+    h4 {
+      background: #333;
+    }
+    .side-nav {
+      li.active {
+        a {
+          color: #fff !important;
+        }
+      }
+      li {
+        a:hover {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+  .search-form input {
+    background: #555;
+    border-color: #666;
+    color: white;
+    &:focus {
+      color: #333;
+      background: white;
+    }
+  }
 }
 
