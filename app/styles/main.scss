@@ -248,6 +248,40 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.video-broken {
+  -webkit-animation: smooth 1s ease-in;
+  -moz-animation: smooth 1s ease-in;
+  -o-animation: smooth 1s ease-in;
+  -ms-animation: smooth 1s ease-in;
+  animation: smooth 1s ease-in;
+  text-align: center;
+  margin-top: 100px;
+}
+
+@-webkit-keyframes smooth {
+  0% { opacity: 0;}
+  75% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
+@-moz-keyframes smooth {
+  0% { opacity: 0;}
+  75% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
+@-o-keyframes smooth {
+  0% { opacity: 0;}
+  75% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
+@keyframes smooth {
+  0% { opacity: 0;}
+  75% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
 body.dark {
   background: #222 !important;
   color: #ccc !important;
