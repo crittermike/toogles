@@ -9,6 +9,15 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.section = $location.path().split('/')[1];
   $scope.searchtype = $location.search()['searchtype'] || 'videos';
 
+  if (localStorage.tooglesDarkMode === "true") {
+    $scope.$parent.darkmode = true;
+  }
+  $scope.$watch('darkmode', function (newVal, oldVal, scope) {
+    if (typeof newVal !== "undefined" && newVal !== "undefined") {
+      localStorage.tooglesDarkMode = newVal;
+    }
+  });
+
   window.searchCallback = function(data) {
     if (!$scope.videos) {
       $scope.videos = data.feed.entry;
