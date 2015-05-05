@@ -25,7 +25,9 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
       $scope.videos.push.apply($scope.videos, data.feed.entry);
     }
     // @TODO: REMOVE THIS ONCE UPGRADED TO NEW GDATA API.
-    $scope.videos.shift();
+    if ($scope.videos[0].title.$t === "https://youtube.com/devicesupport") {
+      $scope.videos.shift();
+    }
   }
 
   window.userCallback = function(data) {
