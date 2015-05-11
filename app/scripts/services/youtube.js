@@ -90,8 +90,10 @@ tooglesApp.service('youtube', ['$http', function($http) {
       if (hours > 0) {
         result += hours + ':';
       }
-      if (minutes > 0 || hours > 0) {
+      if (hours > 0) {
         result += (minutes < 10 ? '0' + minutes : minutes) + ':';
+      } else {
+        result += minutes + ':';
       }
       result += (seconds < 10 ? '0' + seconds : seconds);
       return result;

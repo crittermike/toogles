@@ -35,7 +35,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.searchVideos = function() {
     document.title = $routeParams.query + ' | Toogles';
     $scope.query = $routeParams.query;
-    params = {};
+    var params = {};
     if ($routeParams.searchsort) {
       params.order = $routeParams.searchsort;
     }
