@@ -18,50 +18,15 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     }
   });
 
-  window.viewCallback = function(data) {
-    if ($scope.section === 'view') {
-      $scope.video = data.entry;
-      $scope.video.video_id = $routeParams.id;
-    } else {
-      var start = $routeParams.start || 0;
-      $scope.video = data.feed.entry[start];
-      $scope.video.video_id = $scope.video.media$group.yt$videoid.$t;
-      $scope.videos = data.feed.entry;
-    }
-    onYouTubeIframeAPIReady($scope.video.video_id, $scope.section);
-    document.title = $scope.video.title.$t + " | Toogles";
-  };
-
-  window.relatedCallback = function(data) {
-    $scope.videos = data.feed.entry;
-  };
-
-  $scope.fetchRelated = function() {
-    if (!$scope.videos) {
-      youtube.setCallback('relatedCallback');
-      youtube.getVideos('related', $routeParams.id);
-    }
-    $scope.showRelated = true;
-  };
-
-  $scope.getLink = function(video, index) {
-    if ($scope.section == 'view') {
-      return '#/view/' + youtube.urlToID(video.media$group.yt$videoid.$t);
-    } else if ($scope.section = 'playlist') {
-      return '#/playlist/' + $routeParams.id + '/' + index
-    }
-  };
+  youtube.fetchVideos($routeParams.id, function(response) {
+    $scope.video = response.items[0];
+    onYouTubeIframeAPIReady($scope.video.id, $scope.section);
+    document.title = $scope.video.title + " | Toogles";
+  });
 
   $scope.formatDuration = function(seconds) {
     return youtube.formatDuration(seconds);
   };
-
-  youtube.setCallback('viewCallback');
-  if ($scope.section === 'view') {
-    youtube.getItem('videos', $routeParams.id);
-  } else {
-    youtube.getItem('playlists', $routeParams.id);
-  }
 
   var started = false;
 
@@ -124,5 +89,9 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
         }
       }
     });
+  }
+
+  $scope.averageRating = function(likeCount, dislikeCount) {
+    return youtube.averageRating(likeCount, dislikeCount);
   }
 }]);

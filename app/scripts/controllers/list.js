@@ -5,7 +5,8 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.location = $location;
   $scope.searchsort = $location.search()['searchsort'] || false;
   $scope.searchduration = $location.search()['searchduration'] || false;
-  $scope.searchtime = $location.search()['searchtime'] || false;
+  $scope.searchdefinition = $location.search()['searchdefinition'] || false;
+  $scope.searchdimension = $location.search()['searchdimension'] || false;
   $scope.section = $location.path().split('/')[1];
   $scope.searchtype = $location.search()['searchtype'] || 'videos';
 
@@ -18,100 +19,83 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
     }
   });
 
-  window.searchCallback = function(data) {
-    if (!$scope.videos) {
-      $scope.videos = data.feed.entry;
-    } else {
-      $scope.videos.push.apply($scope.videos, data.feed.entry);
+  $scope.categoryVideos = function() {
+    youtube.categoryVideos($routeParams.category, function(response) {
+      $scope.videos = response.items;
+    });
+  };
+
+  $scope.searchVideos = function() {
+    $scope.query = $routeParams.query;
+    params = {};
+    if ($routeParams.searchsort) {
+      params.order = $routeParams.searchsort;
     }
-    // @TODO: REMOVE THIS ONCE UPGRADED TO NEW GDATA API.
-    if ($scope.videos[0].title.$t === "https://youtube.com/devicesupport") {
-      $scope.videos.shift();
+    if ($routeParams.searchduration) {
+      params.videoDuration = $routeParams.searchduration;
     }
-  }
-
-  window.userCallback = function(data) {
-    $scope.user = data.entry;
-  }
-
-  $scope.getLink = function(video, index) {
-    if ($scope.resulttype == 'playlists') {
-      return '#/playlist/' + video.yt$playlistId.$t;
+    if ($routeParams.searchdimension) {
+      params.videoDimension = $routeParams.searchdimension;
     }
-    return '#/view/' + youtube.urlToID(video.media$group.yt$videoid.$t);
-  }
-
-  $scope.page = 0;
-  $scope.loadMore = function() {
-    $scope.page = $scope.page + 1;
-    $scope.search();
-  }
-
-  $scope.categories = [
-    {key: "Autos", title: "Autos & Vehicles"},
-    {key: "Comedy", title: "Comedy"},
-    {key: "Education", title: "Education"},
-    {key: "Entertainment", title: "Entertainment"},
-    {key: "Film", title: "Film & Animation"},
-    {key: "Howto", title: "How To & Style"},
-    {key: "Music", title: "Music"},
-    {key: "News", title: "News & Politics"},
-    {key: "People", title: "People & Blogs"},
-    {key: "Animals", title: "Pets & Animals"},
-    {key: "Tech", title: "Science & Technology"},
-    {key: "Sports", title: "Sports"},
-    {key: "Travel", title: "Travel & Events"},
-  ]
-
-  $scope.search = function() {
-    youtube.setPage($scope.page);
-    youtube.setCallback('searchCallback');
-    if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
-      // This is a search with a specific query.
-      document.title = $routeParams.query + " | Toogles";
-      $scope.query = $routeParams.query;
-      youtube.getVideos('search', $scope.query);
-
-    } else if ($routeParams.category !== undefined) {
-      // This is a category page.
-      document.title = $routeParams.category + " | Toogles";;
-      youtube.getVideos('category', $routeParams.category);
-
-    } else if ($routeParams.username !== undefined) {
-      // This is a user page.
-      var type = 'user';
-      if ($routeParams.feed !== undefined) {
-        type += '_' + $routeParams.feed;
-        if ($routeParams.feed === 'playlists') {
-          $scope.resulttype = 'playlists'
-        }
-      }
-      document.title = $routeParams.username + " | Toogles";;
-      youtube.getVideos(type, $routeParams.username);
-      youtube.setCallback('userCallback');
-      youtube.getItem('users', $routeParams.username);
-
-    } else {
-      document.title = "Toogles | Awesome goggles for YouTube";
-      youtube.getVideos('browse', '');
+    if ($routeParams.searchdefinition) {
+      params.videoDefinition = $routeParams.searchdefinition;
     }
+    youtube.searchVideos($routeParams.query, params, function (response) {
+      var ids = [];
+      angular.forEach(response.items, function (item) {
+        ids.push(item.id.videoId);
+      });
+      youtube.fetchVideos(ids, function (response) {
+        $scope.videos = response.items;
+      });
+    });
+  };
+
+  $scope.userVideos = function() {
+    youtube.userVideos($routeParams.username, function(response) {
+      var ids = [];
+      angular.forEach(response.items, function (item) {
+        ids.push(item.id.videoId);
+      });
+      youtube.fetchVideos(ids, function(response) {
+        $scope.videos = response.items;
+      });
+    });
+    youtube.userData($routeParams.username, function(response) {
+      $scope.user = response.items[0];
+    });
+  };
+
+  $scope.popularVideos = function() {
+    youtube.popularVideos(function(response) {
+      $scope.videos = response.items;
+    });
+  };
+
+  if ($routeParams.category !== undefined) {
+    $scope.categoryVideos();
+  } else if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
+    $scope.searchVideos();
+  } else if ($routeParams.username !== undefined) {
+    $scope.userVideos();
+  } else {
+    $scope.popularVideos();
   }
 
-  $scope.$watch('searchsort + searchtime + searchduration + searchtype', function() {
-    $scope.videos = false;
-    youtube.setSort($scope.searchsort);
-    youtube.setTime($scope.searchtime);
-    youtube.setDuration($scope.searchduration);
-    youtube.setType($scope.searchtype);
-    $scope.resulttype = $scope.searchtype;
-    $scope.search();
-  })
+  youtube.videoCategories(function(response) {
+    $scope.categories = response.items;
+  });
 
-  $scope.urlToID = function(url) {
-    return youtube.urlToID(url);
-  }
+  $scope.getLink = function(video) {
+    return '#/view/' + video.id
+  };
+
   $scope.formatDuration = function(seconds) {
     return youtube.formatDuration(seconds);
+  };
+
+  $scope.averageRating = function(likeCount, dislikeCount) {
+    return youtube.averageRating(likeCount, dislikeCount);
   }
 
 }]);

@@ -1,27 +1,43 @@
 <div class="nav-section" ng-show="location.path().indexOf('/search') > -1">
-  <div>
-    <h4>Type</h4>
-    <ul class="side-nav">
-      <li ng-class="{active: $parent.searchtype == 'videos'}"><a ng-click="$parent.location.search('searchtype', 'videos')">Videos</a></li>
-      <li ng-class="{active: $parent.searchtype == 'playlists'}"><a ng-click="$parent.location.search('searchtype', 'playlists')">Playlists</a></li>
-    </ul>
-  </div>
+  <!--<div>-->
+    <!--<h4>Type</h4>-->
+    <!--<ul class="side-nav">-->
+      <!--<li ng-class="{active: $parent.searchtype == 'videos'}"><a ng-click="$parent.location.search('searchtype', 'videos')">Videos</a></li>-->
+      <!--<li ng-class="{active: $parent.searchtype == 'playlists'}"><a ng-click="$parent.location.search('searchtype', 'playlists')">Playlists</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
   <div ng-show="$parent.searchtype != 'playlists'">
     <h4>Sort</h4>
     <ul class="side-nav">
       <li ng-class="{active: !$parent.searchsort}"><a ng-click="$parent.location.search('searchsort', null)">Relevance</a></li>
-      <li ng-class="{active: $parent.searchsort == 'published'}"><a ng-click="$parent.location.search('searchsort', 'published')">Upload date</a></li>
+      <li ng-class="{active: $parent.searchsort == 'date'}"><a ng-click="$parent.location.search('searchsort', 'date')">Upload date</a></li>
       <li ng-class="{active: $parent.searchsort == 'viewCount'}"><a ng-click="$parent.location.search('searchsort', 'viewCount')">View count</a></li>
       <li ng-class="{active: $parent.searchsort == 'rating'}"><a ng-click="$parent.location.search('searchsort', 'rating')">Rating</a></li>
     </ul>
   </div>
+  <!--<div ng-show="$parent.searchtype != 'playlists'">-->
+    <!--<h4>Upload Date</h4>-->
+    <!--<ul class="side-nav">-->
+      <!--<li ng-class="{active: !$parent.searchtime}"><a ng-click="$parent.location.search('searchtime', null)">Anytime</a></li>-->
+      <!--<li ng-class="{active: $parent.searchtime == 'today'}"><a ng-click="$parent.location.search('searchtime', 'today')">Today</a></li>-->
+      <!--<li ng-class="{active: $parent.searchtime == 'this_week'}"><a ng-click="$parent.location.search('searchtime', 'this_week')">This week</a></li>-->
+      <!--<li ng-class="{active: $parent.searchtime == 'this_month'}"><a ng-click="$parent.location.search('searchtime',  'this_month')">This month</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
   <div ng-show="$parent.searchtype != 'playlists'">
-    <h4>Upload Date</h4>
+    <h4>Definition</h4>
     <ul class="side-nav">
-      <li ng-class="{active: !$parent.searchtime}"><a ng-click="$parent.location.search('searchtime', null)">Anytime</a></li>
-      <li ng-class="{active: $parent.searchtime == 'today'}"><a ng-click="$parent.location.search('searchtime', 'today')">Today</a></li>
-      <li ng-class="{active: $parent.searchtime == 'this_week'}"><a ng-click="$parent.location.search('searchtime', 'this_week')">This week</a></li>
-      <li ng-class="{active: $parent.searchtime == 'this_month'}"><a ng-click="$parent.location.search('searchtime',  'this_month')">This month</a></li>
+        <li ng-class="{active: !$parent.searchdefinition}"><a ng-click="$parent.location.search('searchdefinition', null)">All</a></li>
+        <li ng-class="{active: $parent.searchdefinition == 'high'}"><a ng-click="$parent.location.search('searchdefinition', 'high')">High Definition</a></li>
+        <li ng-class="{active: $parent.searchdefinition == 'standard'}"><a ng-click="$parent.location.search('searchdefinition', 'standard')">Standard Definition</a></li>
+    </ul>
+  </div>  
+  <div ng-show="$parent.searchtype != 'playlists'">
+    <h4>Dimension</h4>
+    <ul class="side-nav">
+        <li ng-class="{active: !$parent.searchdimension}"><a ng-click="$parent.location.search('searchdimension', null)">All</a></li>
+        <li ng-class="{active: $parent.searchdimension == '2d'}"><a ng-click="$parent.location.search('searchdimension', '2d')">2D</a></li>
+        <li ng-class="{active: $parent.searchdimension == '3d'}"><a ng-click="$parent.location.search('searchdimension', '3d')">3D</a></li>
     </ul>
   </div>
   <div ng-show="$parent.searchtype != 'playlists'">

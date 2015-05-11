@@ -1,115 +1,91 @@
 tooglesApp.service('youtube', ['$http', function($http) {
 
-  var urlBase = "https://gdata.youtube.com/feeds/api/";
-
-  var offset = 1;
+  var urlBase = 'https://www.googleapis.com/youtube/v3/';
+  var apiKey = 'AIzaSyAZDgDzsLyU1E1D2Ic76Eol2NbuBp8SKyg';
   var count = 24;
-  var callback = 'searchCallback';
-  var duration = false;
-  var time = false;
-  var orderBy = false;
-  var searchType = 'videos';
 
-  this.setPage = function(page) {
-    offset = page * count + 1;
-  };
-  this.setSort = function(sort) {
-    orderBy = sort;
-  };
-  this.setTime = function(when) {
-    time = when;
-  };
-  this.setDuration = function(length) {
-    duration = length;
-  };
-  this.setType = function(type) {
-    searchType = type;
-  };
-  this.setCallback = function(fn) {
-    callback = fn;
-  };
-
-  this.getItem = function(type, id) {
-    var url = 'https://gdata.youtube.com/feeds/api/' + type + '/' + id + '?safeSearch=none&v=2&alt=json&callback=' + callback;
-    $http.jsonp(url);
-  };
-
-  this.getVideos = function(type, query) {
-    query = encodeURIComponent(query);
-    if (type === 'related') {
-      // All videos by a user
-      var url = urlBase + 'videos/' + query + '/related?&v=2&alt=json&callback=' + callback;
-
-    } else if (type === 'user') {
-      // All videos by a user
-      var url = urlBase + 'users/' + query + '/uploads?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
-
-    } else if (type === 'user_favorites') {
-      // All videos by a user
-      var url = urlBase + 'users/' + query + '/favorites?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
-
-    } else if (type === 'user_subscriptions') {
-      // All videos by a user
-      var url = urlBase + 'users/' + query + '/newsubscriptionvideos?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
-
-    } else if (type === 'user_playlists') {
-      // All videos by a user
-      var url = urlBase + 'users/' + query + '/playlists?start-index=' + offset + '&max-results=' + count + '&v=2&alt=json&callback=' + callback;
-
-    } else if (type === 'category') {
-      // All videos within a category
-      var url = urlBase + "standardfeeds/most_viewed_" + query + "?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
-
-    } else if (type === 'search') {
-      // A search query for videos
-      var path = 'videos';
-      if (searchType == 'playlists') {
-        path = 'playlists/snippets';
-      }
-      var url = urlBase + path + "?q=" + query + "&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
-      if (time) {
-        url += '&time=' + time;
-      }
-      if (duration) {
-        url += '&duration=' + duration;
-      }
-      if (orderBy && searchType != 'playlists') {
-        url += '&orderby=' + orderBy;
-      }
-    } else {
-      // Most popular recent videos
-      var url = urlBase + "standardfeeds/most_viewed?time=today&start-index=" + offset + "&max-results=" + count + "&safeSearch=none&v=2&alt=json&callback=" + callback;
+  this.searchVideos = function(query, params, callback) {
+    var url = urlBase + 'search?part=id&type=video&maxResults=' + count + '&q=' + query + '&key=' + apiKey;
+    if (params) {
+      url += '&' + $.param(params);
     }
-    $http.jsonp(url);
+    return this.sendRequest(url, callback);
   };
 
-  // Take a URL with an ID in it and grab the ID out of it. Helper function for YouTube URLs.
-  this.urlToID = function(url) {
-    if (url) {
-      var parts = url.split('/');
-      if (parts.length === 1) {
-        parts = url.split(':'); // Some URLs are separated with : instead of /
+  this.popularVideos = function(callback) {
+    var url = urlBase + 'videos?part=statistics,snippet,contentDetails&chart=mostPopular&maxResults=' + count + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.fetchVideos = function(ids, callback) {
+    if ($.isArray(ids)) {
+      ids = ids.join(',');
+    }
+    var url = urlBase + 'videos?part=statistics,snippet,contentDetails&id=' + ids + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.categoryVideos = function(category, callback) {
+    var url = urlBase + 'videos?part=statistics,snippet,contentDetails&chart=mostPopular&maxResults=' + count + '&videoCategoryId=' + category + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.videoCategories = function(callback) {
+    var url = urlBase + 'videoCategories?part=snippet&regionCode=US&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.userVideos = function(user, callback) {
+    var url = urlBase + 'search?part=id&order=date&maxResults=' + count + '&channelId=' + user + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.userData = function(user, callback) {
+    var url = urlBase + 'channels?part=snippet,statistics&order=date&maxResults=' + count + '&id=' + user + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
+  this.sendRequest = function(url, callback) {
+    return $http.get(url)
+      .success(function(data, status, headers, config) {
+        callback(data)
+      })
+      .error(function(data, status, headers, config) {
+        // @TODO: Basic error handling
+      });
+  };
+
+  this.formatDuration = function(duration) {
+    var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+    var hours = 0, minutes = 0, seconds = 0, totalsecondsonds;
+
+    if (reptms.test(duration)) {
+      var matches = reptms.exec(duration);
+      if (matches[1]) { hours = Number(matches[1])}
+      if (matches[2]) { minutes = Number(matches[2])}
+      if (matches[3]) { seconds = Number(matches[3])}
+      var totalseconds = hours * 3600  + minutes * 60 + seconds;
+      var hours = parseInt( totalseconds / 3600 ) % 24;
+      var minutes = parseInt( totalseconds / 60 ) % 60;
+      var seconds = totalseconds % 60;
+
+      var result = '';
+      if (hours > 0) {
+        result += hours + ':';
       }
-      return parts.pop();
+      if (minutes > 0 || hours > 0) {
+        result += (minutes < 10 ? '0' + minutes : minutes) + ':';
+      }
+      result += (seconds < 10 ? '0' + seconds : seconds);
+      return result;
     }
   };
 
-  this.formatDuration = function(seconds) {
-    var sec_numb    = parseInt(seconds);
-    var hours   = Math.floor(sec_numb / 3600);
-    var minutes = Math.floor((sec_numb - (hours * 3600)) / 60);
-    var seconds = sec_numb - (hours * 3600) - (minutes * 60);
-
-    if (minutes < 10 && hours !== 0) {
-      minutes = "0" + minutes;
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    var time = minutes+':'+seconds;
-    if (hours !== 0) {
-      time = hours + ":" + time;
-    }
-    return time;
-  }
+  this.averageRating = function(likes, dislikes) {
+    likes = parseInt(likes);
+    dislikes = parseInt(dislikes);
+    total = likes + dislikes;
+    average = likes / total;
+    return average * 100;
+  };
 }]);

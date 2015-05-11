@@ -1,17 +1,17 @@
 <div class="meta sidebar">
-  <h3>{{user.title.$t}}</h3>
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <h3><a href="http://youtube.com/channel/{{user.id}}">{{user.snippet.title}}</a></h3>
   <ul>
-    <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{user.yt$statistics.totalUploadViews | number:0}} views</li>
-    <li><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{{user.yt$statistics.subscriberCount | number:0}} subscribers</li>
-    <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;Joined {{user.published.$t | date}}</li>
-    <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;Located in {{user.yt$location.$t}}</li>
-    <li><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;<a href="http://www.youtube.com/subscription_center?add_user={{urlToID(user.author[0].uri.$t)}}" target="_blank">Subscribe</a></li>
+    <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{user.statistics.viewCount | number:0}} views</li>
+    <li><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{{user.statistics.subscriberCount | number:0}} subscribers</li>
+    <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;Joined {{user.snippet.publishedAt | date}}</li>
+    <li><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;<a href="http://youtube.com/channel/{{user.id}}" target="_blank">Subscribe</a></li>
   </ul>
-  <p class="hide-for-small description" ng-bind-html="user.summary.$t | htmlify"></p>
+  <p class="hide-for-small description" ng-bind-html="user.snippet.description | htmlify"></p>
   <ul class="vertical tabs">
-    <li ng-class="{active: location.path().split('/').length == 3}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/">Uploads</a></li>
-    <li ng-class="{active: location.path().indexOf('subscriptions') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/subscriptions">Subscriptions</a></li>
-    <li ng-class="{active: location.path().indexOf('favorites') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/favorites">Favorites</a></li>
-    <li ng-class="{active: location.path().indexOf('playlists') > -1}"><a ng-href="#/user/{{urlToID(user.author[0].uri.$t)}}/playlists">Playlists</a></li>
+    <!--<li ng-class="{active: location.path().split('/').length == 3}"><a ng-href="#/user/{{user.id)}}/">Uploads</a></li>-->
+    <!--<li ng-class="{active: location.path().indexOf('subscriptions') > -1}"><a ng-href="#/user/{{user.id}}/subscriptions">Subscriptions</a></li>-->
+    <!--<li ng-class="{active: location.path().indexOf('favorites') > -1}"><a ng-href="#/user/{{user.id}}/favorites">Favorites</a></li>-->
+    <!--<li ng-class="{active: location.path().indexOf('playlists') > -1}"><a ng-href="#/user/{{user.id}}/playlists">Playlists</a></li>-->
   </ul>
 </div>
