@@ -3,6 +3,7 @@
  */
 tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtube', function($scope, $routeParams, $location, youtube) {
   $scope.location = $location;
+  $scope.routeParams = $routeParams;
   $scope.searchsort = $location.search()['searchsort'] || false;
   $scope.searchduration = $location.search()['searchduration'] || false;
   $scope.searchdefinition = $location.search()['searchdefinition'] || false;

@@ -2,7 +2,7 @@
     <h4>Trending</h4>
     <ul class="side-nav">
         <li ng-class="{active: location.path() == '/browse'}"><a ng-href="#/browse">Everything</a></li>
-        <li ng-class="{active: location.path().indexOf(category.key) > -1}" ng-repeat="category in categories | orderBy: 'snippet.title' | filter: {snippet: {assignable: true}}"><a ng-href='#/browse/{{category.id}}'>{{category.snippet.title}}</a></li>
+        <li ng-class="{active: routeParams.category == category.id}" ng-repeat="category in categories | orderBy: 'snippet.title' | filter: {snippet: {assignable: true}}"><a ng-href='#/browse/{{category.id}}'>{{category.snippet.title}}</a></li>
     </ul>
 </div>
 
