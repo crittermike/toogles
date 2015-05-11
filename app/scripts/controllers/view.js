@@ -24,6 +24,19 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
     document.title = $scope.video.snippet.title + " | Toogles";
   });
 
+  $scope.fetchRelated = function() {
+    $scope.showRelated = true;
+    youtube.relatedVideos($routeParams.id, function(response) {
+      var ids = [];
+      angular.forEach(response.items, function (item) {
+        ids.push(item.id.videoId);
+      });
+      youtube.fetchVideos(ids, function (response) {
+        $scope.videos = response.items;
+      });
+    });
+  };
+
   $scope.formatDuration = function(seconds) {
     return youtube.formatDuration(seconds);
   };
@@ -89,7 +102,11 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
         }
       }
     });
-  }
+  };
+
+  $scope.getLink = function(video) {
+    return '#/view/' + video.id
+  };
 
   $scope.averageRating = function(likeCount, dislikeCount) {
     return youtube.averageRating(likeCount, dislikeCount);

@@ -12,6 +12,11 @@ tooglesApp.service('youtube', ['$http', function($http) {
     return this.sendRequest(url, callback);
   };
 
+  this.relatedVideos = function(id, callback) {
+    var url = urlBase + 'search?part=id&type=video&maxResults=' + count + '&relatedToVideoId=' + id + '&key=' + apiKey;
+    return this.sendRequest(url, callback);
+  };
+
   this.popularVideos = function(callback) {
     var url = urlBase + 'videos?part=statistics,snippet,contentDetails&chart=mostPopular&maxResults=' + count + '&key=' + apiKey;
     return this.sendRequest(url, callback);
@@ -84,8 +89,8 @@ tooglesApp.service('youtube', ['$http', function($http) {
   this.averageRating = function(likes, dislikes) {
     likes = parseInt(likes);
     dislikes = parseInt(dislikes);
-    total = likes + dislikes;
-    average = likes / total;
+    var total = likes + dislikes;
+    var average = likes / total;
     return average * 100;
   };
 }]);
