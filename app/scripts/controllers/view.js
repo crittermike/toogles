@@ -8,6 +8,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.showRelated = false;
   $scope.section = $location.path().split('/')[1];
   $scope.videoTab = $scope.section === 'view' ? 'Related' : 'Playlist';
+  $scope.videos = [];
 
   if (localStorage.tooglesDarkMode === "true") {
     $scope.$parent.darkmode = true;

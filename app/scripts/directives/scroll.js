@@ -1,11 +1,9 @@
 tooglesApp.directive('whenScrolled', function() {
   return function(scope, elm, attr) {
-    var raw = elm[0];
-
-    window.onscroll = function() {
-      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+    $(window).scroll(function () {
+      if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
         scope.$apply(attr.whenScrolled);
       }
-    };
+    });
   };
 });

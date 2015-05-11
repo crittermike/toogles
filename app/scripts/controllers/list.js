@@ -8,8 +8,12 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.searchduration = $location.search()['searchduration'] || false;
   $scope.searchdefinition = $location.search()['searchdefinition'] || false;
   $scope.searchdimension = $location.search()['searchdimension'] || false;
-  $scope.section = $location.path().split('/')[1];
   $scope.searchtype = $location.search()['searchtype'] || 'videos';
+  $scope.section = $location.path().split('/')[1];
+  $scope.page = 1;
+  $scope.nextPageToken = '';
+  $scope.usedTokens = [];
+  $scope.videos = [];
 
   if (localStorage.tooglesDarkMode === "true") {
     $scope.$parent.darkmode = true;
@@ -22,8 +26,9 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
   $scope.categoryVideos = function() {
     document.title = 'Popular | Toogles';
-    youtube.categoryVideos($routeParams.category, function(response) {
-      $scope.videos = response.items;
+    youtube.categoryVideos($scope.nextPageToken, $routeParams.category, function(response) {
+      $scope.nextPageToken = response.nextPageToken;
+      $scope.videos = $scope.videos.concat(response.items);
     });
   };
 
@@ -43,26 +48,28 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
     if ($routeParams.searchdefinition) {
       params.videoDefinition = $routeParams.searchdefinition;
     }
-    youtube.searchVideos($routeParams.query, params, function (response) {
+    youtube.searchVideos($scope.nextPageToken, $routeParams.query, params, function (response) {
+      $scope.nextPageToken = response.nextPageToken;
       var ids = [];
       angular.forEach(response.items, function (item) {
         ids.push(item.id.videoId);
       });
       youtube.fetchVideos(ids, function (response) {
-        $scope.videos = response.items;
+        $scope.videos = $scope.videos.concat(response.items);
       });
     });
   };
 
   $scope.userVideos = function() {
     document.title = $routeParams.username + ' | Toogles';
-    youtube.userVideos($routeParams.username, function(response) {
+    youtube.userVideos($scope.nextPageToken, $routeParams.username, function(response) {
+      $scope.nextPageToken = response.nextPageToken;
       var ids = [];
       angular.forEach(response.items, function (item) {
         ids.push(item.id.videoId);
       });
       youtube.fetchVideos(ids, function(response) {
-        $scope.videos = response.items;
+        $scope.videos = $scope.videos.concat(response.items);
       });
     });
     youtube.userData($routeParams.username, function(response) {
@@ -72,20 +79,29 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
   $scope.popularVideos = function() {
     document.title = 'Popular | Toogles';
-    youtube.popularVideos(function(response) {
-      $scope.videos = response.items;
+    youtube.popularVideos($scope.nextPageToken, function(response) {
+      $scope.nextPageToken = response.nextPageToken;
+      $scope.videos = $scope.videos.concat(response.items);
     });
   };
 
-  if ($routeParams.category !== undefined) {
-    $scope.categoryVideos();
-  } else if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
-    $scope.searchVideos();
-  } else if ($routeParams.username !== undefined) {
-    $scope.userVideos();
-  } else {
-    $scope.popularVideos();
-  }
+  $scope.loadVideos = function() {
+    if ($scope.nextPageToken === undefined || $.inArray($scope.nextPageToken, $scope.usedTokens) >= 0 && $scope.nextPageToken !== '') {
+      return;
+    }
+    $scope.usedTokens.push($scope.nextPageToken);
+    if ($routeParams.category !== undefined) {
+      $scope.categoryVideos();
+    } else if ($routeParams.query !== undefined && $routeParams.query !== "" && $routeParams.query !== "0") {
+      $scope.searchVideos();
+    } else if ($routeParams.username !== undefined) {
+      $scope.userVideos();
+    } else {
+      $scope.popularVideos();
+    }
+  };
+
+  $scope.loadVideos();
 
   youtube.videoCategories(function(response) {
     $scope.categories = response.items;

@@ -2,12 +2,15 @@ tooglesApp.service('youtube', ['$http', function($http) {
 
   var urlBase = 'https://www.googleapis.com/youtube/v3/';
   var apiKey = 'AIzaSyAZDgDzsLyU1E1D2Ic76Eol2NbuBp8SKyg';
-  var count = 24;
+  var count = 12;
 
-  this.searchVideos = function(query, params, callback) {
+  this.searchVideos = function(pageToken, query, params, callback) {
     var url = urlBase + 'search?part=id&type=video&maxResults=' + count + '&q=' + query + '&key=' + apiKey;
     if (params) {
       url += '&' + $.param(params);
+    }
+    if (pageToken) {
+      url += "&pageToken=" + pageToken;
     }
     return this.sendRequest(url, callback);
   };
@@ -17,8 +20,11 @@ tooglesApp.service('youtube', ['$http', function($http) {
     return this.sendRequest(url, callback);
   };
 
-  this.popularVideos = function(callback) {
+  this.popularVideos = function(pageToken, callback) {
     var url = urlBase + 'videos?part=statistics,snippet,contentDetails&chart=mostPopular&maxResults=' + count + '&key=' + apiKey;
+    if (pageToken) {
+      url += "&pageToken=" + pageToken;
+    }
     return this.sendRequest(url, callback);
   };
 
@@ -30,8 +36,11 @@ tooglesApp.service('youtube', ['$http', function($http) {
     return this.sendRequest(url, callback);
   };
 
-  this.categoryVideos = function(category, callback) {
+  this.categoryVideos = function(pageToken, category, callback) {
     var url = urlBase + 'videos?part=statistics,snippet,contentDetails&chart=mostPopular&maxResults=' + count + '&videoCategoryId=' + category + '&key=' + apiKey;
+    if (pageToken) {
+      url += "&pageToken=" + pageToken;
+    }
     return this.sendRequest(url, callback);
   };
 
@@ -40,8 +49,11 @@ tooglesApp.service('youtube', ['$http', function($http) {
     return this.sendRequest(url, callback);
   };
 
-  this.userVideos = function(user, callback) {
+  this.userVideos = function(pageToken, user, callback) {
     var url = urlBase + 'search?part=id&order=date&maxResults=' + count + '&channelId=' + user + '&key=' + apiKey;
+    if (pageToken) {
+      url += "&pageToken=" + pageToken;
+    }
     return this.sendRequest(url, callback);
   };
 
