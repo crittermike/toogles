@@ -20,12 +20,14 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   });
 
   $scope.categoryVideos = function() {
+    document.title = 'Popular | Toogles';
     youtube.categoryVideos($routeParams.category, function(response) {
       $scope.videos = response.items;
     });
   };
 
   $scope.searchVideos = function() {
+    document.title = $routeParams.query + ' | Toogles';
     $scope.query = $routeParams.query;
     params = {};
     if ($routeParams.searchsort) {
@@ -52,6 +54,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   };
 
   $scope.userVideos = function() {
+    document.title = $routeParams.username + ' | Toogles';
     youtube.userVideos($routeParams.username, function(response) {
       var ids = [];
       angular.forEach(response.items, function (item) {
@@ -67,6 +70,7 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   };
 
   $scope.popularVideos = function() {
+    document.title = 'Popular | Toogles';
     youtube.popularVideos(function(response) {
       $scope.videos = response.items;
     });

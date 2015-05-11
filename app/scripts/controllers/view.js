@@ -21,7 +21,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
   youtube.fetchVideos($routeParams.id, function(response) {
     $scope.video = response.items[0];
     onYouTubeIframeAPIReady($scope.video.id, $scope.section);
-    document.title = $scope.video.title + " | Toogles";
+    document.title = $scope.video.snippet.title + " | Toogles";
   });
 
   $scope.formatDuration = function(seconds) {
