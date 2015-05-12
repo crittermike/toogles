@@ -61,19 +61,20 @@ tooglesApp.controller('ListCtrl', ['$scope', '$routeParams', '$location', 'youtu
   };
 
   $scope.userVideos = function() {
-    document.title = $routeParams.username + ' | Toogles';
-    youtube.userVideos($scope.nextPageToken, $routeParams.username, function(response) {
-      $scope.nextPageToken = response.nextPageToken;
-      var ids = [];
-      angular.forEach(response.items, function (item) {
-        ids.push(item.id.videoId);
-      });
-      youtube.fetchVideos(ids, function(response) {
-        $scope.videos = $scope.videos.concat(response.items);
-      });
-    });
     youtube.userData($routeParams.username, function(response) {
       $scope.user = response.items[0];
+      document.title = $scope.user.snippet.title + ' | Toogles';
+      var playlist = response.items[0].contentDetails.relatedPlaylists.uploads;
+      youtube.playlistVideos($scope.nextPageToken, playlist, function(response) {
+        $scope.nextPageToken = response.nextPageToken;
+        var ids = [];
+        angular.forEach(response.items, function (item) {
+          ids.push(item.contentDetails.videoId);
+        });
+        youtube.fetchVideos(ids, function(response) {
+          $scope.videos = $scope.videos.concat(response.items);
+        });
+      });
     });
   };
 

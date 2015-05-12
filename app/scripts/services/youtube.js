@@ -49,8 +49,8 @@ tooglesApp.service('youtube', ['$http', function($http) {
     return this.sendRequest(url, callback);
   };
 
-  this.userVideos = function(pageToken, user, callback) {
-    var url = urlBase + 'search?part=id&order=date&maxResults=' + count + '&channelId=' + user + '&key=' + apiKey;
+  this.playlistVideos = function(pageToken, playlist, callback) {
+    var url = urlBase + 'playlistItems?part=contentDetails&order=date&maxResults=' + count + '&playlistId=' + playlist + '&key=' + apiKey;
     if (pageToken) {
       url += "&pageToken=" + pageToken;
     }
@@ -58,7 +58,7 @@ tooglesApp.service('youtube', ['$http', function($http) {
   };
 
   this.userData = function(user, callback) {
-    var url = urlBase + 'channels?part=snippet,statistics&order=date&maxResults=' + count + '&id=' + user + '&key=' + apiKey;
+    var url = urlBase + 'channels?part=contentDetails,snippet,statistics&order=date&maxResults=' + count + '&id=' + user + '&key=' + apiKey;
     return this.sendRequest(url, callback);
   };
 
