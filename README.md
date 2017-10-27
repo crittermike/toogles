@@ -23,6 +23,17 @@ URL for testing and development. It uses LiveReload internally so all code chang
 should automatically refresh, and it also will watch your .scss files to compile
 to CSS on the fly.
 
+Note that known working versions are:
+
+```
+⇒ node --version
+v0.10.48
+⇒ npm --version
+2.15.1
+```
+
+If anyone would like to upgrade things to work with latest versions, that would be fabulous.
+
 Feel free to hack on it to fix any bugs you find or add any features you'd
 like and send them in as a pull request. I'll add you to the contributors section!
 
